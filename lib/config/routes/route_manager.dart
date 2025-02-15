@@ -6,6 +6,7 @@ import 'package:page_transition/page_transition.dart';
 
 import '../../features/auth/presentation/pages/otp_screen.dart';
 import '../../features/auth/presentation/pages/sign_up_screen.dart';
+import '../../features/layout/presentation/pages/layout_screen.dart';
 import '../../features/on_boarding/presentation/pages/on_boarding_screen1.dart';
 import '../../features/on_boarding/presentation/pages/on_boarding_screen2.dart';
 import 'page_name.dart';
@@ -55,6 +56,12 @@ class RouteManager {
       case PageName.otpScreen:
         return _getPageTransition(
           const OtpScreen(),
+          settings: routeSettings,
+        );
+
+      case PageName.layoutScreen:
+        return _getPageTransition(
+          const LayoutScreen(),
           settings: routeSettings,
         );
 

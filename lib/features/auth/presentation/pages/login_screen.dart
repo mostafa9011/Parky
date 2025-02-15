@@ -7,7 +7,6 @@ import 'package:parky/core/utils/widgets/custom_elevated_button.dart';
 import 'package:parky/core/utils/widgets/custom_text_form_field.dart';
 
 import '../../../../config/themes/assets_manager.dart';
-import '../../../../core/utils/widgets/custom_scaffold_message.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -68,7 +67,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 16),
                 CustomElevatedButton(
                   onPressed: () {
-                    showScaffoldMessage(context);
+                    // showScaffoldMessage(context);
+                    Navigator.pushNamed(context, PageName.layoutScreen);
                   },
                   text: "Sign In",
                   height: 40,

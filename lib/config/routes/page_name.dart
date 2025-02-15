@@ -6,4 +6,5 @@ class PageName {
   static const String signUpScreen = '/signUpScreen';
   static const String completeSignUpScreen = '/completeSignUpScreen';
   static const String otpScreen = '/otpScreen';
+  static const String layoutScreen = '/layoutScreen';
 }
