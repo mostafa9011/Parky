@@ -25,8 +25,6 @@ class DioErrorHandlerFactory implements ErrorHandlerFactoryInterface {
         return ConnectionErrorHandler();
       case DioExceptionType.unknown:
         return UnknownErrorHandler();
-      default:
-        return UnknownErrorHandler();
-    }
+      }
   }
 }

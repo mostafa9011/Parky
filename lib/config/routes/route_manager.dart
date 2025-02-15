@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:parky/features/auth/presentation/pages/complete_sign_up_screen.dart';
 import 'package:parky/features/auth/presentation/pages/login_screen.dart';
 import 'package:parky/features/splash/presentation/pages/splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
 
+import '../../features/auth/presentation/pages/otp_screen.dart';
 import '../../features/auth/presentation/pages/sign_up_screen.dart';
 import '../../features/on_boarding/presentation/pages/on_boarding_screen1.dart';
 import '../../features/on_boarding/presentation/pages/on_boarding_screen2.dart';
@@ -41,6 +43,18 @@ class RouteManager {
       case PageName.signUpScreen:
         return _getPageTransition(
           const SignUpScreen(),
+          settings: routeSettings,
+        );
+
+      case PageName.completeSignUpScreen:
+        return _getPageTransition(
+          const CompleteSignUpScreen(),
+          settings: routeSettings,
+        );
+
+      case PageName.otpScreen:
+        return _getPageTransition(
+          const OtpScreen(),
           settings: routeSettings,
         );
 
