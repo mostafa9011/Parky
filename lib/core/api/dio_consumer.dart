@@ -1,10 +1,10 @@
 import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:parky/config/routes/page_name.dart';
 import 'package:parky/config/routes/route_manager.dart';
 import 'package:parky/core/api/api_consumer.dart';
-import 'package:parky/core/api/end_points.dart';
 import 'package:parky/core/errors/api/api_response_codes.dart';
 import 'package:parky/core/helpers/cache_helper.dart';
 import 'package:parky/core/utils/functions/kprint.dart';
@@ -25,11 +25,11 @@ class DioConsumer implements ApiConsumer {
     );
 
     dio.options = BaseOptions(
-      baseUrl: EndPoints.baseUrl,
+      // baseUrl: EndPoints.baseUrl,
       receiveDataWhenStatusError: true,
       sendTimeout: const Duration(seconds: 30),
-      receiveTimeout: const Duration(seconds: 30),
-      connectTimeout: const Duration(seconds: 30),
+      receiveTimeout: const Duration(seconds: 40),
+      connectTimeout: const Duration(seconds: 40),
       headers: {
         'Content-Type': 'application/json',
         "Access-Control-Allow-Origin": "*",

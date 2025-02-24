@@ -11,11 +11,14 @@ class AssetsManager {
   static const String onBoarding3 = '${_imagesPath}onBoarding3.png';
   static const String onBoarding4 = '${_imagesPath}onBoarding4.png';
   static const String onBoardingBg = '${_imagesPath}onBoardingBg.png';
+  static const String parkingIcon = '${_imagesPath}parkingIcon.png';
 
   /// SVG
   static const String backIcon = '${_svgPath}back_icon.svg';
   static const String noConnection = '${_svgPath}no_connection.svg';
   static const String logo = '${_svgPath}logo.svg';
+  static const String pdfFile = '${_svgPath}pdf_file.svg';
+  static const String upload = '${_svgPath}upload.svg';
 
   /// Icons
 

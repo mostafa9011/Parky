@@ -7,6 +7,8 @@ import 'package:parky/core/api/api_consumer.dart';
 import 'package:parky/core/api/dio_consumer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'register_parking.dart';
+
 final sl = GetIt.instance;
 
 Future<void> initDependencies() async {
@@ -20,4 +22,8 @@ Future<void> initDependencies() async {
   // Shared preferences instance
   final sharedPref = await SharedPreferences.getInstance();
   sl.registerLazySingleton<SharedPreferences>(() => sharedPref);
+  
+  // Register parking singleton
+  registerParking();
+  
 }

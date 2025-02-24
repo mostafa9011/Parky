@@ -3,6 +3,7 @@ import 'package:parky/features/auth/presentation/pages/complete_sign_up_screen.d
 import 'package:parky/features/auth/presentation/pages/login_screen.dart';
 import 'package:parky/features/splash/presentation/pages/splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:parky/features/wallet/presentation/pages/add_card_screen.dart';
 
 import '../../features/auth/presentation/pages/otp_screen.dart';
 import '../../features/auth/presentation/pages/sign_up_screen.dart';
@@ -62,6 +63,12 @@ class RouteManager {
       case PageName.layoutScreen:
         return _getPageTransition(
           const LayoutScreen(),
+          settings: routeSettings,
+        );
+
+      case PageName.addCardScreen:
+        return _getPageTransition(
+          const AddCardScreen(),
           settings: routeSettings,
         );
 

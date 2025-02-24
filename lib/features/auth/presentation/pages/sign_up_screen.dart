@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:parky/config/themes/text_style.dart';
 import 'package:parky/features/auth/presentation/widgets/custom_app_bar.dart';
+import 'package:parky/features/auth/presentation/widgets/custom_drop_down.dart';
 
 import '../../../../config/routes/page_name.dart';
 import '../../../../config/themes/assets_manager.dart';
@@ -36,16 +37,22 @@ class SignUpScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: SingleChildScrollView(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Stack(
+                    alignment: Alignment.center,
                     children: [
-                      CircularImage(
-                        radius: 55.r,
-                        // fileImage: doctorAccount.image,
+                      Align(
+                        alignment: Alignment.center,
+                        child: CircularImage(
+                          radius: 55.r,
+                          // fileImage: doctorAccount.image,
+                        ),
                       ),
                       Positioned(
                         bottom: 0,
                         right: 0,
+                        left: 90.w,
                         child: Container(
                           decoration: const BoxDecoration(
                             color: Colors.white,
@@ -65,55 +72,79 @@ class SignUpScreen extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 50.h),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Name",
-                        style: getRegularStyle(
-                          fontSize: 16,
-                          color: Colors.black,
-                        ),
-                      ),
-                      const CustomTextFormField(
-                        textHint: "Name",
-                        colorBorder: Colors.black54,
-                      ),
-                    ],
+                  //name
+                  Text(
+                    "Name",
+                    style: getRegularStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                    ),
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Email",
-                        style: getRegularStyle(
-                          fontSize: 16,
-                          color: Colors.black,
-                        ),
-                      ),
-                      const CustomTextFormField(
-                        textHint: "Email",
-                        colorBorder: Colors.black54,
-                      ),
-                    ],
+                  const CustomTextFormField(
+                    textHint: "Name",
+                    colorBorder: Colors.black54,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Password",
-                        style: getRegularStyle(
-                          fontSize: 16,
-                          color: Colors.black,
-                        ),
-                      ),
-                      const CustomTextFormField(
-                        textHint: "Password",
-                        colorBorder: Colors.black54,
-                      ),
-                    ],
+                  //email
+                  Text(
+                    "Email",
+                    style: getRegularStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                    ),
                   ),
-                  SizedBox(height: .2.sh),
+                  const CustomTextFormField(
+                    textHint: "Email",
+                    colorBorder: Colors.black54,
+                  ),
+                  //password
+                  Text(
+                    "Password",
+                    style: getRegularStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const CustomTextFormField(
+                    textHint: "Password",
+                    colorBorder: Colors.black54,
+                  ),
+                  //phone
+                  Text(
+                    "Phone",
+                    style: getRegularStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const CustomTextFormField(
+                    textHint: "Phone",
+                    colorBorder: Colors.black54,
+                    keyboardType: TextInputType.phone,
+                  ),
+                  // notional id
+                  Text(
+                    "National ID",
+                    style: getRegularStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const CustomTextFormField(
+                    textHint: "National ID",
+                    colorBorder: Colors.black54,
+                    keyboardType: TextInputType.phone,
+                  ),
+                  //gender drop down
+                  Text(
+                    "Gender",
+                    style: getRegularStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const CustomDropDown(),
+
+                  SizedBox(height: 24.h),
                   CustomElevatedButton(
                     onPressed: () {
                       Navigator.pushNamed(
@@ -124,6 +155,8 @@ class SignUpScreen extends StatelessWidget {
                     text: "Complete Sign Up",
                     isLoading: false,
                   ),
+                  SizedBox(height: 24.h),
+
                 ],
               ),
             ),

@@ -4,6 +4,8 @@ import 'package:parky/config/themes/color_manager.dart';
 import 'package:parky/features/favorite/presentation/pages/favorite_screen.dart';
 import 'package:parky/features/wallet/presentation/pages/wallet_screen.dart';
 
+import '../../../../config/themes/assets_manager.dart';
+import '../../../../config/themes/text_style.dart';
 import '../../../home/presentation/pages/home_screen.dart';
 import '../../../profile/presentation/pages/profile_screen.dart';
 
@@ -15,6 +17,13 @@ class LayoutScreen extends StatefulWidget {
 }
 
 class _LayoutScreenState extends State<LayoutScreen> {
+
+  @override
+  void initState() {
+    super.initState();
+    // HomeCubit.get(context).getRealTimeLocation();
+  }
+
   int _selectedIndex = 0;
   final List<Widget> _screens = <Widget>[
     const HomeScreen(),
@@ -22,6 +31,14 @@ class _LayoutScreenState extends State<LayoutScreen> {
     const WalletScreen(),
     const ProfileScreen(),
   ];
+
+  final List<String> _titles = [
+    "Find the closest parking spot for you.",
+    "Check out your favorite parking spot!",
+    "Check out your wallet history!",
+    "Check out your profile account!",
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +47,48 @@ class _LayoutScreenState extends State<LayoutScreen> {
         children: [
           SizedBox(
             height: 0.17.sh,
+            width: double.infinity,
+            child:  Stack(
+            alignment: Alignment.center,
+              children: [
+                Image.asset(
+                   AssetsManager.onBoardingBg,
+                  color: Colors.white,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10.w),        
+                  child: Row(
+                    children: [
+                      Flexible(
+                        child: Text(
+                          _titles.elementAt(_selectedIndex),
+                          style: getBoldStyle(
+                            fontSize: 24,
+                            color: Colors.white,
+                          ),
+                          // overflow: TextOverflow.fade,
+                        ),
+                      ),
+                      // SizedBox(width: 10.w),
+                      IconButton(
+                        onPressed: () {},
+                        icon: CircleAvatar(
+                          backgroundColor: Colors.white,
+                          child: Icon(
+                            Icons.notifications_none,
+                            color: ColorManager.primaryColor,
+                            size: 25.sp,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              
+              ],
+            ),
           ),
           Expanded(
             child: Container(

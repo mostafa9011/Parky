@@ -41,7 +41,7 @@ class CustomTextFormField extends StatelessWidget {
     super.key,
     this.label,
     this.textHint,
-    this.textColor = ColorManager.white,
+    this.textColor = ColorManager.black,
     this.hintColor = ColorManager.grey3,
     this.maxLines = 4,
     this.onchangeFun,

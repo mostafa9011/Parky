@@ -6,6 +6,7 @@ import 'package:parky/core/utils/widgets/custom_text_form_field.dart';
 import '../../../../config/themes/assets_manager.dart';
 import '../../../../config/themes/text_style.dart';
 import '../../../../core/utils/widgets/custom_elevated_button.dart';
+import '../../../../core/utils/widgets/upload_file/upload_file_widget.dart';
 import '../widgets/custom_app_bar.dart';
 
 class CompleteSignUpScreen extends StatelessWidget {
@@ -67,7 +68,12 @@ class CompleteSignUpScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 0.4.sh),
+                  SizedBox(height: 30.h),
+                  UploadFileWidget(
+                    params: UploadFileParams(title: "Upload Car License"),
+                    // enabled: true,
+                  ),
+                  SizedBox(height: 33.h),
                   CustomElevatedButton(
                     onPressed: () {
                       Navigator.pushNamed(context, PageName.otpScreen);

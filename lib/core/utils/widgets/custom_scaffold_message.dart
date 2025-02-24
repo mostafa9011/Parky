@@ -12,7 +12,7 @@ showScaffoldMessage(BuildContext context, {String? message}) {
       duration: const Duration(seconds: 4),
       elevation: 0,
       content: Container(
-        margin: EdgeInsets.only(bottom: 80.r),
+        margin: EdgeInsets.only(bottom: 50.r),
         padding: EdgeInsets.all(10.r),
         decoration: BoxDecoration(
           color: Colors.black.withOpacity(0.8),
@@ -24,7 +24,7 @@ showScaffoldMessage(BuildContext context, {String? message}) {
           children: [
             Icon(
               Icons.info,
-              color: Colors.white,
+              color: Colors.green,
               size: 24.sp,
             ),
             SizedBox(width: 10.w),
@@ -32,7 +32,7 @@ showScaffoldMessage(BuildContext context, {String? message}) {
               child: Text(
                 message ?? "Will comming soon",
                 style: getMediumStyle(
-                  color: Colors.white,
+                  color: Colors.green,
                   fontSize: 16,
                 ),
               ),

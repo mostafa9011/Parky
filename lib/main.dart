@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:parky/core/helpers/cache_helper.dart';
 import 'package:parky/core/utils/bloc_observer.dart';
-import 'package:parky/core/utils/di.dart';
+import 'package:parky/core/utils/widgets/di/di.dart';
 
 import 'my_app.dart';
 
