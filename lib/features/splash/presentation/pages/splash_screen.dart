@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> _initializeApp() async {
     // await HomeCubit.get(context).getLocation();
 
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 4));
     Navigator.pushReplacementNamed(context, PageName.onBoarding1);
 
     // await HomeCubit.get(context).getParkings();

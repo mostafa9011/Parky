@@ -20,41 +20,20 @@ class HomeCubit extends Cubit<HomeState> {
   Set<Circle> circles = {};
   List<LatLongEntity> parkings = [];
 
-  // // get current location
-  // Future<void> getLocation() async {
-  //   locationData = await LocationService.instance.getCurrentLocation();
+  // get current location
+  Future<void> getLocation(GoogleMapController controller) async {
+    locationData = await LocationService.instance.getCurrentLocation();
 
-  //   if (locationData != null) {
-  //     // markers.add(
-  //     //   Marker(
-  //     //     markerId: const MarkerId('1'),
-  //     //     position: LatLng(locationData!.latitude!, locationData!.longitude!),
-  //     //     infoWindow: const InfoWindow(title: 'Current Location'),
-  //     //     icon: BitmapDescriptor.defaultMarker,
-  //     //   ),
-  //     // );
+    if (locationData != null) {
+      // markers.add(
+      //   Marker(
+      //     markerId: const MarkerId('1'),
+      //     position: LatLng(locationData!.latitude!, locationData!.longitude!),
+      //     infoWindow: const InfoWindow(title: 'Current Location'),
+      //     icon: BitmapDescriptor.defaultMarker,
+      //   ),
+      // );
 
-  //     circles.add(
-  //       Circle(
-  //         circleId: const CircleId('1'),
-  //         center: LatLng(locationData!.latitude!, locationData!.longitude!),
-  //         radius: 30,
-  //         strokeWidth: 2,
-  //         strokeColor: Colors.blueAccent,
-  //         fillColor: Colors.blue.withOpacity(0.3),
-  //       ),
-  //     );
-  //     emit(LocationLoaded());
-  //   }
-  // }
-
-  // get real time location
-  void getRealTimeLocation(GoogleMapController controller) {
-    LocationService.instance.getRealTimeLocation(
-      (updatedLocation) {
-        locationData = updatedLocation;
-        // update circle location
-        circles.clear();
         circles.add(
           Circle(
             circleId: const CircleId('1'),
@@ -73,10 +52,39 @@ class HomeCubit extends Cubit<HomeState> {
 
         // update parking
         getParkings();
-        // emit(LocationLoaded());
-      },
-    );
+      emit(LocationLoaded());
+    }
   }
+
+  // // get real time location
+  // void getRealTimeLocation(GoogleMapController controller) {
+  //   LocationService.instance.getRealTimeLocation(
+  //     (updatedLocation) {
+  //       locationData = updatedLocation;
+  //       // update circle location
+  //       circles.clear();
+  //       circles.add(
+  //         Circle(
+  //           circleId: const CircleId('1'),
+  //           center: LatLng(locationData!.latitude!, locationData!.longitude!),
+  //           radius: 30,
+  //           strokeWidth: 2,
+  //           strokeColor: Colors.blueAccent,
+  //           fillColor: Colors.blue.withOpacity(0.3),
+  //         ),
+  //       );
+  //       controller.animateCamera(
+  //         CameraUpdate.newLatLng(
+  //           LatLng(locationData!.latitude!, locationData!.longitude!),
+  //         ),
+  //       );
+
+  //       // update parking
+  //       getParkings();
+  //       // emit(LocationLoaded());
+  //     },
+  //   );
+  // }
 
   // get parking
   Future<void> getParkings() async {

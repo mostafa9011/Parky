@@ -30,7 +30,7 @@ class CustomMapState extends State<CustomMap> {
   @override
   Widget build(BuildContext context) {
     HomeCubit homeCubit = HomeCubit.get(context);
-    
+
     return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -42,7 +42,7 @@ class CustomMapState extends State<CustomMap> {
           initialCameraPosition: initialLocation,
           onMapCreated: (controller) {
             _controller.complete(controller);
-            homeCubit.getRealTimeLocation(controller);
+            homeCubit.getLocation(controller);
           },
         );
       },
