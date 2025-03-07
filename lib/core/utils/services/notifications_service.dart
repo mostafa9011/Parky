@@ -9,32 +9,61 @@ class NotificationService {
   static final FlutterLocalNotificationsPlugin _localNotifications =
       FlutterLocalNotificationsPlugin();
 
-  // initialize
+  // Initialize Firebase Messaging and Local Notifications
   static Future<void> initialize() async {
-    // request permission
-    NotificationSettings settings =
-        await _firebaseMessaging.requestPermission();
+    // ✅ Request permission for notifications (iOS & Android)
+    NotificationSettings settings = await _firebaseMessaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+
+    // ❌ If user denies permission, stop initialization
     if (settings.authorizationStatus == AuthorizationStatus.denied) {
-      log("authorizationStatus is denied");
+      log("🚫 Notification permission denied.");
       return;
     }
 
-    // initialize local notifications
+    // ✅ Initialize local notifications (Android & iOS)
     const AndroidInitializationSettings androidInitSettings =
         AndroidInitializationSettings('@mipmap/ic_launcher');
-    const InitializationSettings initSettings =
-        InitializationSettings(android: androidInitSettings);
-    await _localNotifications.initialize(initSettings);
 
-    // listen to messages
+    const DarwinInitializationSettings iOSInitSettings =
+        DarwinInitializationSettings(
+      requestAlertPermission: true,
+      requestBadgePermission: true,
+      requestSoundPermission: true,
+    );
+
+    const InitializationSettings initSettings = InitializationSettings(
+      android: androidInitSettings,
+      iOS: iOSInitSettings,
+    );
+
+    await _localNotifications.initialize(
+      initSettings,
+      onDidReceiveNotificationResponse: (NotificationResponse response) {
+        log("🔔 Notification clicked: ${response.payload}");
+      },
+    );
+
+    // ✅ Listen for foreground messages (when the app is open)
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      log("new message : ${message.notification?.title}");
+      log("📩 New Message: ${message.notification?.title}");
       _showNotification(message);
     });
 
-    // get token
+    // ✅ Get FCM token for push notifications
     String? token = await _firebaseMessaging.getToken();
-    log("🔑 FCM Token: $token");
+    if (token != null) {
+      log("🔑 FCM Token: $token");
+    } else {
+      log("⚠️ Failed to get FCM token.");
+    }
   }
 
   // show notification
