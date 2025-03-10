@@ -8,5 +8,6 @@ class PageName {
   static const String otpScreen = '/otpScreen';
   static const String layoutScreen = '/layoutScreen';
   static const String addCardScreen = '/addCardScreen';
-  static const String myAccountScreen = '/myAccountScreen';  
+  static const String myAccountScreen = '/myAccountScreen';
+  static const String notificationsScreen ='/notificationsScreen';  
 }

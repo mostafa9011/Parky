@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:parky/config/routes/page_name.dart';
 import 'package:parky/config/themes/color_manager.dart';
 import 'package:parky/features/favorite/presentation/pages/favorite_screen.dart';
 import 'package:parky/features/wallet/presentation/pages/wallet_screen.dart';
@@ -17,7 +18,6 @@ class LayoutScreen extends StatefulWidget {
 }
 
 class _LayoutScreenState extends State<LayoutScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -48,17 +48,17 @@ class _LayoutScreenState extends State<LayoutScreen> {
           SizedBox(
             height: 0.17.sh,
             width: double.infinity,
-            child:  Stack(
-            alignment: Alignment.center,
+            child: Stack(
+              alignment: Alignment.center,
               children: [
                 Image.asset(
-                   AssetsManager.onBoardingBg,
+                  AssetsManager.onBoardingBg,
                   color: Colors.white,
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10.w),        
+                  padding: EdgeInsets.symmetric(horizontal: 10.w),
                   child: Row(
                     children: [
                       Flexible(
@@ -73,7 +73,12 @@ class _LayoutScreenState extends State<LayoutScreen> {
                       ),
                       // SizedBox(width: 10.w),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(
+                            context,
+                            PageName.notificationsScreen,
+                          );
+                        },
                         icon: CircleAvatar(
                           backgroundColor: Colors.white,
                           child: Icon(
@@ -86,7 +91,6 @@ class _LayoutScreenState extends State<LayoutScreen> {
                     ],
                   ),
                 ),
-              
               ],
             ),
           ),

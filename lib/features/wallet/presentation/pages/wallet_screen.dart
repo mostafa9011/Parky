@@ -144,6 +144,7 @@ class WalletScreen extends StatelessWidget {
           // قائمة العمليات
           Expanded(
             child: ListView(
+              padding: EdgeInsets.zero,
               children: const [
                 TransactionItem(
                     title: "Added Money",

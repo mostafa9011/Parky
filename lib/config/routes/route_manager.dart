@@ -8,6 +8,7 @@ import 'package:parky/features/wallet/presentation/pages/add_card_screen.dart';
 import '../../features/auth/presentation/pages/otp_screen.dart';
 import '../../features/auth/presentation/pages/sign_up_screen.dart';
 import '../../features/layout/presentation/pages/layout_screen.dart';
+import '../../features/notifications/presentation/pages/notifications_screen.dart';
 import '../../features/on_boarding/presentation/pages/on_boarding_screen1.dart';
 import '../../features/on_boarding/presentation/pages/on_boarding_screen2.dart';
 import '../../features/profile/presentation/pages/my_account_screen.dart';
@@ -76,6 +77,12 @@ class RouteManager {
       case PageName.myAccountScreen:
         return _getPageTransition(
           const MyAccountScreen(),
+          settings: routeSettings,
+        );
+
+      case PageName.notificationsScreen:
+        return _getPageTransition(
+          const NotificationsScreen(),
           settings: routeSettings,
         );
 
