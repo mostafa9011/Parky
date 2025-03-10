@@ -3,8 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:parky/config/themes/color_manager.dart';
 import 'package:parky/config/themes/text_style.dart';
 
+import '../../../auth/presentation/widgets/image_sourse_dialog.dart';
+
 class ProfileCard extends StatelessWidget {
-  const ProfileCard({super.key});
+  const ProfileCard({super.key, this.enableEdit = false});
+  final bool enableEdit;
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +40,17 @@ class ProfileCard extends StatelessWidget {
             ],
           ),
           const Spacer(),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.edit,
-              color: Colors.white,
-            ),
-          ),
+          if (enableEdit) ...{
+            IconButton(
+              onPressed: () {
+                showImageSourceDialog(context);
+              },
+              icon: const Icon(
+                Icons.edit,
+                color: Colors.white,
+              ),
+            )
+          },
         ],
       ),
     );

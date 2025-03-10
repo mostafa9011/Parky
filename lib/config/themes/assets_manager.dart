@@ -19,6 +19,8 @@ class AssetsManager {
   static const String logo = '${_svgPath}logo.svg';
   static const String pdfFile = '${_svgPath}pdf_file.svg';
   static const String upload = '${_svgPath}upload.svg';
+  static const String enFlag = '${_svgPath}en_flag.svg';
+  static const String arFlag = '${_svgPath}ar_flag.svg';
 
   /// Icons
 

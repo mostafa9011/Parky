@@ -10,6 +10,7 @@ import '../../features/auth/presentation/pages/sign_up_screen.dart';
 import '../../features/layout/presentation/pages/layout_screen.dart';
 import '../../features/on_boarding/presentation/pages/on_boarding_screen1.dart';
 import '../../features/on_boarding/presentation/pages/on_boarding_screen2.dart';
+import '../../features/profile/presentation/pages/my_account_screen.dart';
 import 'page_name.dart';
 
 class RouteManager {
@@ -69,6 +70,12 @@ class RouteManager {
       case PageName.addCardScreen:
         return _getPageTransition(
           const AddCardScreen(),
+          settings: routeSettings,
+        );
+
+      case PageName.myAccountScreen:
+        return _getPageTransition(
+          const MyAccountScreen(),
           settings: routeSettings,
         );
 

@@ -156,7 +156,6 @@ class SignUpScreen extends StatelessWidget {
                     isLoading: false,
                   ),
                   SizedBox(height: 24.h),
-
                 ],
               ),
             ),

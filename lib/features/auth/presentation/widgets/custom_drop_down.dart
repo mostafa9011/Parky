@@ -3,13 +3,16 @@ import 'dart:developer';
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 
+enum Gender { male, female }
+
 const List<String> _gender = [
   'Male',
   'Female',
 ];
 
 class CustomDropDown extends StatelessWidget {
-  const CustomDropDown({super.key});
+  const CustomDropDown({super.key, this.gender});
+  final Gender? gender;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,11 @@ class CustomDropDown extends StatelessWidget {
         closedBorder: Border.all(color: Colors.black54),
       ),
       items: _gender,
-      // initialItem: _gender[0],
+      initialItem: gender == null
+          ? null
+          : gender == Gender.male
+              ? _gender[0]
+              : _gender[1],
       onChanged: (value) {
         log('changing value to: $value');
       },

@@ -53,9 +53,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 16),
                 const CustomTextFormField(
                   textHint: "Email",
+                  textColor: Colors.white,
                 ),
                 CustomTextFormField(
                   textHint: "password",
+                  textColor: Colors.white,
                   obscureText: obscureText,
                   isSuffixWidget: true,
                   passwordVisibility: () {
@@ -68,9 +70,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 CustomElevatedButton(
                   onPressed: () {
                     // showScaffoldMessage(context);
-                    Navigator.pushNamed(context, PageName.layoutScreen);
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      PageName.layoutScreen,
+                      (route) => false,
+                    );
                   },
-                  text: "Sign In",
+                  text: "Log In",
                   height: 40,
                 ),
                 const SizedBox(height: 16),

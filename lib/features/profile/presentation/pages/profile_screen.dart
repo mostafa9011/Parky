@@ -4,6 +4,7 @@ import 'package:parky/config/themes/text_style.dart';
 import 'package:parky/core/utils/widgets/custom_elevated_button.dart';
 
 import '../../../../config/routes/page_name.dart';
+import '../widgets/custom_language_sheet.dart';
 import '../widgets/profile_card.dart';
 import '../widgets/profile_item.dart';
 
@@ -18,16 +19,20 @@ class ProfileScreen extends StatelessWidget {
         children: [
           const ProfileCard(),
           // my account
-          const ProfileItem(
+          ProfileItem(
             title: 'My Account',
             subTitle: 'Edit your account details',
             icon: Icons.person_2_outlined,
+            onPressed: () {
+              Navigator.pushNamed(context, PageName.myAccountScreen);
+            },
           ),
           // family comunity
-          const ProfileItem(
+          ProfileItem(
             title: 'Family Comunity',
             subTitle: 'Join your family comunity',
             icon: Icons.people_outline,
+            onPressed: () {},
           ),
           // notifications
           const ProfileItem(
@@ -36,11 +41,23 @@ class ProfileScreen extends StatelessWidget {
             icon: Icons.notifications_none,
             isNotification: true,
           ),
-          //Two-Factor Authentication
-          const ProfileItem(
-            title: 'Two-Factor Authentication',
-            subTitle: 'Enable or disable two-factor authentication',
-            icon: Icons.security_rounded,
+          // language
+          ProfileItem(
+            title: 'Language',
+            subTitle: 'Select your language',
+            icon: Icons.language_outlined,
+            onPressed: () {
+              // show modalbottomsheet
+              showModalBottomSheet(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                context: context,
+                builder: (context) {
+                  return const CustomLanguageSheet();
+                },
+              );
+            },
           ),
           // logout
           ProfileItem(
