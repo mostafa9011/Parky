@@ -127,7 +127,7 @@ class CustomTextFormField extends StatelessWidget {
               color: Colors.red,
             ),
           ),
-
+          suffix: suffixWidget,
           suffixIcon: isSuffixWidget
               ? IconButton(
                   onPressed: () {

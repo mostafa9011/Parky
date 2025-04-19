@@ -37,4 +37,8 @@ abstract class TextManager {
   static const String phoneAlreadyExists = 'phoneAlreadyExists';
   static const String loading = 'loading';
   static const String noInternet = "noInternet";
+  //
+  static const String changeLanguage = 'changeLanguage';
+  static const String changeLanguageSubTitle = 'changeLanguageSubTitle';
+
 }

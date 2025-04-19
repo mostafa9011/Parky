@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:parky/config/themes/text_manager.dart';
 import 'package:parky/core/utils/widgets/custom_radio_button.dart';
 import 'package:parky/core/utils/widgets/custom_svg_icon.dart';
 
@@ -43,14 +44,14 @@ class _CustomLanguageSheetState extends State<CustomLanguageSheet> {
           ),
           // chage language
           Text(
-            'Change Language',
+            TextManager.changeLanguage.tr(),
             style: getBoldStyle(
               fontSize: 16,
               color: Colors.black,
             ),
           ),
           Text(
-            'Choose the language that suits you for a better and personalized experience.',
+            TextManager.changeLanguageSubTitle.tr(),
             style: getBoldStyle(
               fontSize: 16,
               color: Colors.black45,

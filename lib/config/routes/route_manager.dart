@@ -11,6 +11,7 @@ import '../../features/layout/presentation/pages/layout_screen.dart';
 import '../../features/notifications/presentation/pages/notifications_screen.dart';
 import '../../features/on_boarding/presentation/pages/on_boarding_screen1.dart';
 import '../../features/on_boarding/presentation/pages/on_boarding_screen2.dart';
+import '../../features/profile/presentation/pages/family_comunity_screen.dart';
 import '../../features/profile/presentation/pages/my_account_screen.dart';
 import 'page_name.dart';
 
@@ -83,6 +84,12 @@ class RouteManager {
       case PageName.notificationsScreen:
         return _getPageTransition(
           const NotificationsScreen(),
+          settings: routeSettings,
+        );
+
+      case PageName.familyComunityScreen:
+        return _getPageTransition(
+          const FamilyComunityScreen(),
           settings: routeSettings,
         );
 

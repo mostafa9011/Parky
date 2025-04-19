@@ -32,7 +32,9 @@ class ProfileScreen extends StatelessWidget {
             title: 'Family Comunity',
             subTitle: 'Join your family comunity',
             icon: Icons.people_outline,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, PageName.familyComunityScreen);
+            },
           ),
           // notifications
           const ProfileItem(
