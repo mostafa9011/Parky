@@ -1,10 +1,7 @@
 part of 'favorite_cubit.dart';
 
-abstract class FavoriteState extends Equatable {
-  const FavoriteState();
-
-  @override
-  List<Object> get props => [];
-}
+abstract class FavoriteState {}
 
 class FavoriteInitial extends FavoriteState {}
+
+class FavoriteUpdated extends FavoriteState {}

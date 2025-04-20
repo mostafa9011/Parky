@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:parky/config/themes/color_manager.dart';
 import 'package:parky/config/themes/text_style.dart';
 
+import '../../../../core/utils/constants_manager.dart';
 import '../../../auth/presentation/widgets/image_sourse_dialog.dart';
 
 class ProfileCard extends StatelessWidget {
@@ -23,7 +24,8 @@ class ProfileCard extends StatelessWidget {
           const CircleAvatar(
             radius: 30,
             backgroundImage: NetworkImage(
-                'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg'),
+              ConstantsManager.tempProfileImage,
+            ),
           ),
           const SizedBox(width: 10),
           Column(

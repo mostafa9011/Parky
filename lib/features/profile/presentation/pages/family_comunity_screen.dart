@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:parky/core/utils/widgets/custom_text.dart';
 import 'package:parky/core/utils/widgets/custom_text_form_field.dart';
+import 'package:parky/features/profile/presentation/cubit/profile_cubit.dart';
 
 import '../../../../config/themes/assets_manager.dart';
 import '../../../../config/themes/color_manager.dart';
@@ -91,6 +93,7 @@ class FamilyComunityScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return const CustomFamilyCard(
                         isInviteCard: true,
+                        id: 1,
                       );
                     },
                   ),
@@ -99,12 +102,34 @@ class FamilyComunityScreen extends StatelessWidget {
                     style:
                         getBoldStyle(fontSize: 16, color: ColorManager.black),
                   ),
-                  ListView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: 6,
-                    itemBuilder: (context, index) {
-                      return const CustomFamilyCard();
+                  BlocBuilder<ProfileCubit, ProfileState>(
+                    builder: (context, state) {
+                      var familyList = ProfileCubit.get(context).familyList;
+                      if (familyList.isEmpty) {
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 50),
+                          child: Center(
+                            child: Text(
+                              "Your family list is empty",
+                              style: getBoldStyle(
+                                fontSize: 18,
+                                color: ColorManager.primaryColor,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        );
+                      }
+                      return ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: familyList.length,
+                        itemBuilder: (context, index) {
+                          return CustomFamilyCard(
+                            id: familyList[index],
+                          );
+                        },
+                      );
                     },
                   ),
                 ],

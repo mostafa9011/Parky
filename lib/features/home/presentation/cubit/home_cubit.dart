@@ -94,6 +94,21 @@ class HomeCubit extends Cubit<HomeState> {
     result.fold((failure) => emit(ParkingError(failure.message)),
         (result) async {
       parkings = result;
+      List<LatLongEntity> additionalParkings = [
+        // modern academy
+        LatLongEntity(
+          id: -1,
+          lat: 29.98234548340719,
+          long: 31.329856233177455,
+        ),
+        // معهد العبور
+        LatLongEntity(
+          id: -2,
+          lat: 30.27946229966729,
+          long: 31.473262303928124,
+        ),
+      ];
+      parkings.addAll(additionalParkings);
       markers.clear();
       final customIcon = await getCustomMarker();
 

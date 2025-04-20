@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:parky/config/themes/color_manager.dart';
 import 'package:parky/core/utils/widgets/custom_elevated_button.dart';
+import 'package:parky/core/utils/widgets/custom_scaffold_message.dart';
 
 import '../../../../config/themes/assets_manager.dart';
 import '../../../../config/themes/text_style.dart';
@@ -160,7 +161,13 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                     CustomElevatedButton(
                       width: 120.w,
                       height: 28.h,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pop(context);
+                        showScaffoldMessage(
+                          context,
+                          message: "Data saved successfully",
+                        );
+                      },
                       text: "Save data",
                       textColor: Colors.red.shade900,
                       borderColor: Colors.grey,

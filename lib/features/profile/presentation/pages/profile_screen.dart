@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:parky/config/themes/text_style.dart';
 import 'package:parky/core/utils/widgets/custom_elevated_button.dart';
+import 'package:parky/core/utils/widgets/custom_scaffold_message.dart';
 
 import '../../../../config/routes/page_name.dart';
 import '../widgets/custom_language_sheet.dart';
@@ -105,6 +106,10 @@ class ProfileScreen extends StatelessWidget {
                                     context,
                                     PageName.loginScreen,
                                     (route) => false,
+                                  );
+                                  showScaffoldMessage(
+                                    context,
+                                    message: 'Logout successfully',
                                   );
                                 },
                                 text: 'Logout',

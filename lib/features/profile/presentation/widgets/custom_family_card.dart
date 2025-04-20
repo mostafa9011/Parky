@@ -2,14 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:parky/config/themes/color_manager.dart';
 import 'package:parky/config/themes/text_style.dart';
+import 'package:parky/core/utils/widgets/custom_scaffold_message.dart';
 import 'package:parky/core/utils/widgets/custom_text.dart';
+import 'package:parky/features/profile/presentation/cubit/profile_cubit.dart';
+
+import '../../../../core/utils/constants_manager.dart';
 
 class CustomFamilyCard extends StatelessWidget {
   const CustomFamilyCard({
     super.key,
     this.isInviteCard = false,
+    required this.id,
   });
   final bool isInviteCard;
+  final int id;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +31,7 @@ class CustomFamilyCard extends StatelessWidget {
           const CircleAvatar(
             radius: 30,
             backgroundImage: NetworkImage(
-              'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+              ConstantsManager.tempProfileImage,
             ),
           ),
           const SizedBox(width: 10),
@@ -45,7 +51,14 @@ class CustomFamilyCard extends StatelessWidget {
           const Spacer(),
           if (!isInviteCard) ...{
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                ProfileCubit.get(context).removeFamily(id);
+                showScaffoldMessage(
+                  context,
+                  message: "Removed From Family Comunity",
+                  type: ErrorType.error,
+                );
+              },
               icon: Icon(
                 Icons.delete,
                 color: Colors.white,

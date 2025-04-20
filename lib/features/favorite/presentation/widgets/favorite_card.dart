@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:parky/config/themes/color_manager.dart';
 import 'package:parky/config/themes/text_style.dart';
+import 'package:parky/core/utils/constants_manager.dart';
+import 'package:parky/core/utils/widgets/custom_scaffold_message.dart';
+import 'package:parky/features/favorite/presentation/cubit/favorite_cubit.dart';
 
 class FavoriteCard extends StatelessWidget {
-  const FavoriteCard({super.key});
+  const FavoriteCard({super.key, required this.id});
+  final int id;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +31,7 @@ class FavoriteCard extends StatelessWidget {
                 borderRadius:
                     const BorderRadius.vertical(top: Radius.circular(16)),
                 child: Image.network(
-                  "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+                  ConstantsManager.tempGarageLink,
                   height: 120.h,
                   width: double.infinity,
                   fit: BoxFit.cover,
@@ -106,7 +110,10 @@ class FavoriteCard extends StatelessWidget {
               isFavorite: true,
               iconSize: 35.r,
               iconDisabledColor: Colors.white,
-              valueChanged: (value) {},
+              valueChanged: (value) {
+                FavoriteCubit.get(context).removeFavorite(id);
+                showScaffoldMessage(context, message: "Removed From Favorites");
+              },
             ),
           ),
         ),

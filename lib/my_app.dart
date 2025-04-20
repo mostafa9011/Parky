@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:parky/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:parky/features/favorite/presentation/cubit/favorite_cubit.dart';
 import 'config/routes/page_name.dart';
 import 'config/routes/route_manager.dart';
 import 'config/themes/themes.dart';
 import 'core/utils/widgets/di/di.dart';
 import 'features/home/domain/usecases/get_parkings_use_case.dart';
 import 'features/home/presentation/cubit/home_cubit.dart';
+import 'features/profile/presentation/cubit/profile_cubit.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -21,13 +23,23 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (_, child) => MultiBlocProvider(
         providers: [
+          // home cubit
           BlocProvider(
             create: (context) => HomeCubit(
               sl.get<GetParkingsUseCase>(),
             ),
           ),
+          // auth cubit
           BlocProvider(
             create: (context) => AuthCubit(),
+          ),
+          // favorite cubit
+          BlocProvider(
+            create: (context) => FavoriteCubit(),
+          ),
+          // profile cubit
+          BlocProvider(
+            create: (context) => ProfileCubit(),
           ),
         ],
         child: MaterialApp(

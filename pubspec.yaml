@@ -56,6 +56,7 @@ flutter:
     - assets/svg/
     - assets/fonts/
     - assets/translations/
+    - shorebird.yaml
   fonts:
     - family: Almarai
       fonts:

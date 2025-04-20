@@ -10,6 +10,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../data/models/notification_model.dart';
 import '../cubit/notifications_cubit.dart';
+import '../widgets/no_notifications_widget.dart';
 import '../widgets/notification_item.dart';
 
 class NotificationsScreen extends StatelessWidget {
@@ -112,26 +113,37 @@ class NotificationsScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Expanded(
-                    child: Container(
-                      width: double.infinity,
-                      color: Colors.white,
-                      padding: EdgeInsets.all(16.r),
-                      // child: NoNotificationsWidget(),
-                      child: Skeletonizer(
-                        enabled: state is NotificationsLoading,
-                        child: ListView.builder(
-                          itemBuilder: (context, index) {
-                            return NotificationItem(
-                              notificationModel: notifications?[index],
-                            );
-                          },
-                          itemCount: notifications?.length ?? 2,
-                          padding: EdgeInsets.zero,
+                  if (notifications?.isEmpty ?? false) ...{
+                    Expanded(
+                      child: Container(
+                        width: double.infinity,
+                        color: Colors.white,
+                        padding: EdgeInsets.all(16.r),
+                        child: const NoNotificationsWidget(),
+                      ),
+                    )
+                  } else ...{
+                    Expanded(
+                      child: Container(
+                        width: double.infinity,
+                        color: Colors.white,
+                        padding: EdgeInsets.all(16.r),
+                        // child: NoNotificationsWidget(),
+                        child: Skeletonizer(
+                          enabled: state is NotificationsLoading,
+                          child: ListView.builder(
+                            itemBuilder: (context, index) {
+                              return NotificationItem(
+                                notificationModel: notifications?[index],
+                              );
+                            },
+                            itemCount: notifications?.length ?? 2,
+                            padding: EdgeInsets.zero,
+                          ),
                         ),
                       ),
                     ),
-                  ),
+                  },
                 ],
               ),
             );

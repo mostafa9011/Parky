@@ -23,7 +23,7 @@ showScaffoldMessage(
         // margin: EdgeInsets.only(bottom: 0.8.sh),
         padding: EdgeInsets.all(8.r),
         decoration: BoxDecoration(
-          color: type == ErrorType.success ? ColorManager.white : Colors.white,
+          color: ColorManager.primaryColor,
           borderRadius: BorderRadius.circular(16.r),
         ),
         child: Row(
@@ -32,9 +32,8 @@ showScaffoldMessage(
           children: [
             Icon(
               type == ErrorType.success ? Icons.check : Icons.error,
-              color: type == ErrorType.success
-                  ? ColorManager.primaryColor
-                  : Colors.red,
+              color:
+                  type == ErrorType.success ? ColorManager.white : Colors.red,
             ),
             SizedBox(width: 10.w),
             Expanded(
@@ -42,7 +41,7 @@ showScaffoldMessage(
                 text: message ?? "Will comming soon",
                 style: getMediumStyle(
                   color: type == ErrorType.success
-                      ? ColorManager.primaryColor
+                      ? ColorManager.white
                       : Colors.red,
                   fontSize: 16,
                 ),
