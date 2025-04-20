@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:parky/config/themes/text_style.dart';
+import 'package:parky/features/auth/data/models/register_form.dart';
+import 'package:parky/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:parky/features/auth/presentation/widgets/custom_app_bar.dart';
 import 'package:parky/features/auth/presentation/widgets/custom_drop_down.dart';
 
@@ -17,6 +19,7 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RegisterForm registerForm = AuthCubit.get(context).registerForm;
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -72,16 +75,30 @@ class SignUpScreen extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 50.h),
-                  //name
+                  //First name
                   Text(
-                    "Name",
+                    "First name",
                     style: getRegularStyle(
                       fontSize: 16,
                       color: Colors.black,
                     ),
                   ),
-                  const CustomTextFormField(
-                    textHint: "Name",
+                  CustomTextFormField(
+                    controller: registerForm.firstNameController,
+                    textHint: "First name",
+                    colorBorder: Colors.black54,
+                  ),
+                  //Last name
+                  Text(
+                    "Last name",
+                    style: getRegularStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                    ),
+                  ),
+                  CustomTextFormField(
+                    controller: registerForm.lastNameController,
+                    textHint: "Last name",
                     colorBorder: Colors.black54,
                   ),
                   //email
@@ -92,7 +109,8 @@ class SignUpScreen extends StatelessWidget {
                       color: Colors.black,
                     ),
                   ),
-                  const CustomTextFormField(
+                  CustomTextFormField(
+                    controller: registerForm.emailController,
                     textHint: "Email",
                     colorBorder: Colors.black54,
                   ),
@@ -104,7 +122,8 @@ class SignUpScreen extends StatelessWidget {
                       color: Colors.black,
                     ),
                   ),
-                  const CustomTextFormField(
+                  CustomTextFormField(
+                    controller: registerForm.passwordController,
                     textHint: "Password",
                     colorBorder: Colors.black54,
                   ),
@@ -143,7 +162,7 @@ class SignUpScreen extends StatelessWidget {
                     ),
                   ),
                   const CustomDropDown(),
-
+              
                   SizedBox(height: 24.h),
                   CustomElevatedButton(
                     onPressed: () {

@@ -1,38 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:parky/core/utils/functions/kprint.dart';
+import 'package:parky/config/themes/color_manager.dart';
 
 import '../../../config/themes/text_style.dart';
+import 'custom_text.dart';
 
-showScaffoldMessage(BuildContext context, {String? message}) {
-  kprint("showScaffoldMessage"); 
+enum ErrorType { success, error }
+
+showScaffoldMessage(
+  BuildContext context, {
+  String? message,
+  ErrorType type = ErrorType.success,
+}) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
+      // behavior: SnackBarBehavior.floating,
+      // margin: EdgeInsets.only(top: 0, left: 20, right: 20, bottom: 0.8.sh),
       backgroundColor: Colors.transparent,
-      duration: const Duration(seconds: 4),
+      duration: const Duration(seconds: 3),
       elevation: 0,
       content: Container(
-        margin: EdgeInsets.only(bottom: 50.r),
-        padding: EdgeInsets.all(10.r),
+        // margin: EdgeInsets.only(bottom: 0.8.sh),
+        padding: EdgeInsets.all(8.r),
         decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.8),
-          borderRadius: BorderRadius.circular(10.r),
+          color: type == ErrorType.success ? ColorManager.white : Colors.white,
+          borderRadius: BorderRadius.circular(16.r),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
-              Icons.info,
-              color: Colors.green,
-              size: 24.sp,
+              type == ErrorType.success ? Icons.check : Icons.error,
+              color: type == ErrorType.success
+                  ? ColorManager.primaryColor
+                  : Colors.red,
             ),
             SizedBox(width: 10.w),
-            Flexible(
-              child: Text(
-                message ?? "Will comming soon",
+            Expanded(
+              child: CustomText(
+                text: message ?? "Will comming soon",
                 style: getMediumStyle(
-                  color: Colors.green,
+                  color: type == ErrorType.success
+                      ? ColorManager.primaryColor
+                      : Colors.red,
                   fontSize: 16,
                 ),
               ),

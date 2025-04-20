@@ -2,12 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
-import 'package:parky/config/routes/page_name.dart';
-import 'package:parky/config/routes/route_manager.dart';
 import 'package:parky/core/api/api_consumer.dart';
-import 'package:parky/core/errors/api/api_response_codes.dart';
-import 'package:parky/core/helpers/cache_helper.dart';
-import 'package:parky/core/utils/functions/kprint.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 /// This class is responsible for handling api calls using Dio package
@@ -25,7 +20,7 @@ class DioConsumer implements ApiConsumer {
     );
 
     dio.options = BaseOptions(
-      // baseUrl: EndPoints.baseUrl,
+      baseUrl: 'https://parkygp.onrender.com',
       receiveDataWhenStatusError: true,
       sendTimeout: const Duration(seconds: 30),
       receiveTimeout: const Duration(seconds: 40),
@@ -50,40 +45,40 @@ class DioConsumer implements ApiConsumer {
           maxWidth: 90,
         ),
 
-        InterceptorsWrapper(
-          onRequest: (options, handler) async {
-            // For token handling
-            final token = CacheHelper.getStringData('token');
+        // InterceptorsWrapper(
+        //   onRequest: (options, handler) async {
+        //     // For token handling
+        //     final token = CacheHelper.getStringData('token');
 
-            if (token != null) {
-              // Set the Authorization header with the cached access token
-              options.headers['Authorization'] = 'Bearer $token';
-            }
+        //     if (token != null) {
+        //       // Set the Authorization header with the cached access token
+        //       options.headers['Authorization'] = 'Bearer $token';
+        //     }
 
-            return handler.next(options);
-          },
-          // onResponse: (response, handler) {
-          //   return handler.next(response);
-          // },
-          onError: (error, handler) {
-            kprint("Error from DioConsumer: ${error.toString()}");
+        //     return handler.next(options);
+        //   },
+        //   // onResponse: (response, handler) {
+        //   //   return handler.next(response);
+        //   // },
+        //   onError: (error, handler) {
+        //     kprint("Error from DioConsumer: ${error.toString()}");
 
-            if (error.response?.statusCode == APIResponseCodes.unauthorized ||
-                error.response?.statusCode == APIResponseCodes.forbidden) {
-              // User is unauthorized or forbidden
+        //     if (error.response?.statusCode == APIResponseCodes.unauthorized ||
+        //         error.response?.statusCode == APIResponseCodes.forbidden) {
+        //       // User is unauthorized or forbidden
 
-              // Clear cashed data
+        //       // Clear cashed data
 
-              // Navigate to login page
-              RouteManager.navigatorKey.currentState!.pushNamedAndRemoveUntil(
-                PageName.loginScreen,
-                (route) => false,
-              );
-            } else {
-              return handler.next(error);
-            }
-          },
-        ),
+        //       // Navigate to login page
+        //       RouteManager.navigatorKey.currentState!.pushNamedAndRemoveUntil(
+        //         PageName.loginScreen,
+        //         (route) => false,
+        //       );
+        //     } else {
+        //       return handler.next(error);
+        //     }
+        //   },
+        // ),
       ],
     );
   }

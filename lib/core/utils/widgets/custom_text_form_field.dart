@@ -94,7 +94,12 @@ class CustomTextFormField extends StatelessWidget {
         controller: controller,
         onTapOutside: (event) => FocusScope.of(context).unfocus(),
         obscureText: obscureText,
-        validator: validator,
+        validator: validator?? (value) {
+          if (value == null || value.isEmpty) {
+            return 'field is required';
+          }
+          return null;
+        },
         decoration: InputDecoration(
           hintStyle: getRegularStyle(
             fontSize: 16,

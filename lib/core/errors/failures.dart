@@ -12,13 +12,13 @@ abstract class Failure extends Equatable {
 }
 
 class ServerFailure extends Failure {
-  final int code;
+  final int? code;
 
   /// This class is used to return failure
   /// when error occured with api (dio)
   const ServerFailure({
     required super.message,
-    required this.code,
+     this.code,
   });
 
   @override
