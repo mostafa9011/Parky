@@ -34,24 +34,24 @@ class HomeCubit extends Cubit<HomeState> {
       //   ),
       // );
 
-        circles.add(
-          Circle(
-            circleId: const CircleId('1'),
-            center: LatLng(locationData!.latitude!, locationData!.longitude!),
-            radius: 30,
-            strokeWidth: 2,
-            strokeColor: Colors.blueAccent,
-            fillColor: Colors.blue.withOpacity(0.3),
-          ),
-        );
-        controller.animateCamera(
-          CameraUpdate.newLatLng(
-            LatLng(locationData!.latitude!, locationData!.longitude!),
-          ),
-        );
+      circles.add(
+        Circle(
+          circleId: const CircleId('1'),
+          center: LatLng(locationData!.latitude!, locationData!.longitude!),
+          radius: 30,
+          strokeWidth: 2,
+          strokeColor: Colors.blueAccent,
+          fillColor: Colors.blue.withOpacity(0.3),
+        ),
+      );
+      controller.animateCamera(
+        CameraUpdate.newLatLng(
+          LatLng(locationData!.latitude!, locationData!.longitude!),
+        ),
+      );
 
-        // update parking
-        getParkings();
+      // update parking
+      getParkings();
       emit(LocationLoaded());
     }
   }

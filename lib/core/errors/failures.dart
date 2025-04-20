@@ -18,7 +18,7 @@ class ServerFailure extends Failure {
   /// when error occured with api (dio)
   const ServerFailure({
     required super.message,
-     this.code,
+    this.code,
   });
 
   @override

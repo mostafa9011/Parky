@@ -22,8 +22,7 @@ Future<void> initDependencies() async {
   // Shared preferences instance
   final sharedPref = await SharedPreferences.getInstance();
   sl.registerLazySingleton<SharedPreferences>(() => sharedPref);
-  
+
   // Register parking singleton
   registerParking();
-  
 }

@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-
 extension FileExtension on File? {
   bool get isNotEmpty => this != null && this!.path.isNotEmpty;
 

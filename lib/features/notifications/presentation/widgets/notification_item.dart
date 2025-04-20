@@ -3,11 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:parky/config/themes/assets_manager.dart';
 import 'package:parky/core/utils/widgets/circular_image.dart';
+import 'package:parky/features/notifications/data/models/notification_model.dart';
 
 import '../../../../config/themes/text_style.dart';
 
 class NotificationItem extends StatelessWidget {
-  const NotificationItem({super.key});
+  const NotificationItem({super.key, required this.notificationModel});
+  final NotificationModel? notificationModel;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,6 @@ class NotificationItem extends StatelessWidget {
       endActionPane: ActionPane(
         motion: const ScrollMotion(),
         extentRatio: 0.3,
-
         children: [
           SlidableAction(
             onPressed: (context) {},
@@ -42,7 +43,7 @@ class NotificationItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Notification Title",
+                    notificationModel?.message.toString() ?? "",
                     style: getRegularStyle(
                       fontSize: 16,
                       color: Colors.black,
@@ -59,7 +60,7 @@ class NotificationItem extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                "4:30 PM",
+                formateDate(notificationModel?.time ?? DateTime.now(), context),
                 style: getRegularStyle(
                   fontSize: 13,
                   color: Colors.grey,

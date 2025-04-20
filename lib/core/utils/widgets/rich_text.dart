@@ -9,7 +9,7 @@ class RichTextItem extends StatelessWidget {
   final String text2;
   final String? text3;
   final double fontSize;
-  
+
   const RichTextItem({
     super.key,
     required this.text1,

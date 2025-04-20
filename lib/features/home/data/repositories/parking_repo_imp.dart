@@ -12,9 +12,11 @@ class ParkingRepoImp extends ParkingRepo {
   ParkingRepoImp(this.parkingDataSource);
 
   @override
-  Future<Either<Failure, List<LatLongEntity>>> getParking({required double lat , required long }) async {
+  Future<Either<Failure, List<LatLongEntity>>> getParking(
+      {required double lat, required long}) async {
     try {
-      final parkingList = await parkingDataSource.getParking( lat: lat, long: long);
+      final parkingList =
+          await parkingDataSource.getParking(lat: lat, long: long);
       return Right(parkingList);
     } on Exception catch (e) {
       return Left(ErrorHandler().handle(e));

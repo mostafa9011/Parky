@@ -162,7 +162,7 @@ class SignUpScreen extends StatelessWidget {
                     ),
                   ),
                   const CustomDropDown(),
-              
+
                   SizedBox(height: 24.h),
                   CustomElevatedButton(
                     onPressed: () {

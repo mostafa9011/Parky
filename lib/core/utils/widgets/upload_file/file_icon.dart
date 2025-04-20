@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../config/themes/assets_manager.dart';
 
-
 class FileIcon extends StatelessWidget {
   final String icon;
   const FileIcon({

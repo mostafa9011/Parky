@@ -1,7 +1,7 @@
 class LatLongEntity {
   final double lat;
   final double long;
-  final int id ;
+  final int id;
   LatLongEntity({required this.lat, required this.long, required this.id});
 
   // from json

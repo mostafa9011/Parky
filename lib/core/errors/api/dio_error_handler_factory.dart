@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:parky/core/errors/api/dio_error_handlers.dart';
 import 'package:parky/core/errors/error_handler.dart';
 
-
 /// This class is responsible for returning instance
 /// for the correct dio exception handler based on the type
 class DioErrorHandlerFactory implements ErrorHandlerFactoryInterface {
@@ -25,6 +24,6 @@ class DioErrorHandlerFactory implements ErrorHandlerFactoryInterface {
         return ConnectionErrorHandler();
       case DioExceptionType.unknown:
         return UnknownErrorHandler();
-      }
+    }
   }
 }

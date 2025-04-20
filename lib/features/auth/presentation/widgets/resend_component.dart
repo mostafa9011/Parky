@@ -65,9 +65,7 @@ class _ResendComponentState extends State<ResendComponent> {
                       ),
                     ),
                     TextSpan(
-                      text: cubit.counter >= 60
-                          ? '\tminutes'
-                          : '\tseconds',
+                      text: cubit.counter >= 60 ? '\tminutes' : '\tseconds',
                       style: getRegularStyle(
                         fontSize: 14,
                         color: ColorManager.primaryColor,

@@ -21,7 +21,7 @@ class AssetsManager {
   static const String upload = '${_svgPath}upload.svg';
   static const String enFlag = '${_svgPath}en_flag.svg';
   static const String arFlag = '${_svgPath}ar_flag.svg';
-  static const String noNotifications ='${_svgPath}no_notifications.svg';
+  static const String noNotifications = '${_svgPath}no_notifications.svg';
 
   /// Icons
 

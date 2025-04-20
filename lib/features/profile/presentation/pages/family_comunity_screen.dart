@@ -96,7 +96,8 @@ class FamilyComunityScreen extends StatelessWidget {
                   ),
                   CustomText(
                     text: "Your Family",
-                    style: getBoldStyle(fontSize: 16,color: ColorManager.black),
+                    style:
+                        getBoldStyle(fontSize: 16, color: ColorManager.black),
                   ),
                   ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),

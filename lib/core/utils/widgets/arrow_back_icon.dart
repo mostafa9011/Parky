@@ -5,8 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:parky/config/themes/assets_manager.dart';
 import 'package:parky/config/themes/color_manager.dart';
 
-
-class ArrowBackIcon extends StatelessWidget { 
+class ArrowBackIcon extends StatelessWidget {
   final Function()? onBack;
   const ArrowBackIcon({super.key, this.onBack});
 
@@ -38,8 +37,8 @@ class ArrowBackIcon extends StatelessWidget {
           ),
           child: Transform(
             alignment: Alignment.center,
-            transform:
-                Matrix4.rotationY(context.locale.languageCode != 'ar' ? 3.14 : 0),
+            transform: Matrix4.rotationY(
+                context.locale.languageCode != 'ar' ? 3.14 : 0),
             child: SvgPicture.asset(
               AssetsManager.backIcon,
               width: 25.w,
