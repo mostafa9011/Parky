@@ -11,4 +11,6 @@ abstract class ConstantsManager {
 
   static const tempProfileImage =
       'https://t3.ftcdn.net/jpg/06/99/46/60/360_F_699466075_DaPTBNlNQTOwwjkOiFEoOvzDV0ByXR9E.jpg';
+  static const tempeMa3adyGarage =
+      'https://img.youm7.com/large/202207270330463046.jpg';
 }

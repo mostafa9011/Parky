@@ -44,6 +44,7 @@ class CustomMapState extends State<CustomMap> {
             _controller.complete(controller);
             homeCubit.getLocation(controller);
           },
+          
         );
       },
     );

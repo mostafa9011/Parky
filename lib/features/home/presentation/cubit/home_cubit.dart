@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
+import 'package:parky/config/routes/route_manager.dart';
 import 'package:parky/core/utils/services/location_service.dart';
 import 'package:parky/features/home/domain/usecases/get_parkings_use_case.dart';
 
 import '../../../../config/themes/assets_manager.dart';
 import '../../domain/entities/lat_long_entity.dart';
+import '../widgets/custom_modal_sheet.dart';
 
 part 'home_state.dart';
 
@@ -119,6 +121,14 @@ class HomeCubit extends Cubit<HomeState> {
             position: LatLng(parking.lat, parking.long),
             infoWindow: InfoWindow(title: "Parking ${parking.id}"),
             icon: customIcon,
+            onTap: () {
+              showModalBottomSheet(
+                context: RouteManager.ctx!,
+                builder: (context) {
+                  return const CustomModalSheet();
+                },
+              );
+            },
           ),
         );
       }

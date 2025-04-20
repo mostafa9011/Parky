@@ -5,7 +5,8 @@ import 'package:parky/config/themes/color_manager.dart';
 import 'package:parky/config/themes/text_style.dart';
 import 'package:parky/core/utils/constants_manager.dart';
 import 'package:parky/core/utils/widgets/custom_scaffold_message.dart';
-import 'package:parky/features/favorite/presentation/cubit/favorite_cubit.dart';
+
+import '../cubit/favorite_cubit.dart';
 
 class FavoriteCard extends StatelessWidget {
   const FavoriteCard({super.key, required this.id});
@@ -43,10 +44,22 @@ class FavoriteCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // address
-                    Text(
-                      "Bamboo Parking",
-                      style:
-                          getSemiBoldStyle(fontSize: 16, color: Colors.black),
+                    Row(
+                      children: [
+                        Text(
+                          "Bamboo Parking",
+                          style: getSemiBoldStyle(
+                              fontSize: 16, color: Colors.black),
+                        ),
+                        const Spacer(),
+                        Text(
+                          "EGP 50",
+                          style: getBoldStyle(
+                            fontSize: 16,
+                            color: ColorManager.primaryColor,
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 4),
                     // location
@@ -83,10 +96,10 @@ class FavoriteCard extends StatelessWidget {
                           ],
                         ),
                         Text(
-                          "EGP 50 /Hour",
-                          style: getBoldStyle(
-                            fontSize: 14,
-                            color: ColorManager.primaryColor,
+                          " 15 /Hour",
+                          style: getMediumStyle(
+                            fontSize: 12,
+                            color: ColorManager.grey2,
                           ),
                         ),
                       ],
