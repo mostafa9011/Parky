@@ -1,11 +1,10 @@
-import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:parky/config/themes/color_manager.dart';
 import 'package:parky/config/themes/text_style.dart';
 import 'package:parky/core/utils/constants_manager.dart';
-import 'package:parky/core/utils/widgets/custom_scaffold_message.dart';
 
+import '../../../../core/utils/widgets/custom_scaffold_message.dart';
 import '../cubit/favorite_cubit.dart';
 
 class FavoriteCard extends StatelessWidget {
@@ -119,15 +118,34 @@ class FavoriteCard extends StatelessWidget {
               shape: BoxShape.circle,
               color: ColorManager.lightPink,
             ),
-            child: FavoriteButton(
-              isFavorite: true,
-              iconSize: 35.r,
-              iconDisabledColor: Colors.white,
-              valueChanged: (value) {
+            child: IconButton(
+              onPressed: () {
                 FavoriteCubit.get(context).removeFavorite(id);
                 showScaffoldMessage(context, message: "Removed From Favorites");
               },
+              padding: EdgeInsets.zero,
+              style: IconButton.styleFrom(
+                padding: EdgeInsets.zero,
+                minimumSize: Size.zero,
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              ),
+              icon: Icon(
+                Icons.favorite,
+                color: Colors.red,
+                size: 30.sp,
+              ),
             ),
+            // child: FavoriteButton(
+            //   isFavorite: true,
+            //   iconSize: 35.r,
+            //   iconColor: Colors.red,
+            //   iconDisabledColor: Colors.white,
+            //   valueChanged: (value) {
+            //     kprint('id tapped : $id  value : $value');
+            //     FavoriteCubit.get(context).removeFavorite(id);
+            //     showScaffoldMessage(context, message: "Removed From Favorites");
+            //   },
+            // ),
           ),
         ),
       ],

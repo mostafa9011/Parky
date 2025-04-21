@@ -11,9 +11,7 @@ class FavoriteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FavoriteCubit, FavoriteState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         var favoriteList = FavoriteCubit.get(context).favorites;
 
@@ -34,7 +32,7 @@ class FavoriteScreen extends StatelessWidget {
             itemCount: favoriteList.length,
             itemBuilder: (context, index) {
               return FavoriteCard(
-                id: favoriteList[index],
+                id: favoriteList[index].id,
               );
             },
           ),

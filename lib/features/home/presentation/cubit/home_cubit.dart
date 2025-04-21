@@ -119,15 +119,23 @@ class HomeCubit extends Cubit<HomeState> {
           Marker(
             markerId: MarkerId(parking.id.toString()),
             position: LatLng(parking.lat, parking.long),
-            infoWindow: InfoWindow(title: "Parking ${parking.id}"),
+            infoWindow: InfoWindow(
+              title: parking.id == -2
+                  ? "معهد العبور"
+                  : parking.id == -1
+                      ? "Modern Academy"
+                      : "Parking ${parking.id}",
+            ),
             icon: customIcon,
             onTap: () {
-              showModalBottomSheet(
-                context: RouteManager.ctx!,
-                builder: (context) {
-                  return const CustomModalSheet();
-                },
-              );
+              if (parking.id == -1) {
+                showModalBottomSheet(
+                  context: RouteManager.ctx!,
+                  builder: (context) {
+                    return const CustomModalSheet();
+                  },
+                );
+              }
             },
           ),
         );

@@ -10,7 +10,7 @@ class GetParkingRemoteDataSource {
       {required double lat, required double long}) async {
     var response = await _dioConsumer.get(
         path:
-            'https://overpass-api.de/api/interpreter?data=[out:json];node["amenity"="parking"](around:4000,$lat,$long);out;');
+            'https://overpass-api.de/api/interpreter?data=[out:json];node["amenity"="parking"](around:10000,$lat,$long);out;');
     List<LatLongEntity> latLongList = [];
     for (var element in response['elements']) {
       latLongList.add(LatLongEntity.fromJson(element));

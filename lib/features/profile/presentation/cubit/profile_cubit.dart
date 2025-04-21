@@ -11,12 +11,10 @@ class ProfileCubit extends Cubit<ProfileState> {
     1,
     2,
     3,
-    4,
-    5,
   ];
 
   void removeFamily(int id) {
-    familyList.removeAt(id);
+    familyList.removeWhere((element) => element == id);
     emit(FamilyComunityUpdated());
   }
 }

@@ -20,9 +20,9 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> login(LoginModel loginModel) async {
     emit(LoginLoading());
     final result = await _authRepository.login(loginModel);
-    result.fold((failure) => emit(LoginError(failure.message)), (token) {
+    result.fold((failure) => emit(LoginError(failure.message)), (token) async {
       tokenModel = token;
-      CacheHelper.set(key: 'token', value: token.accessToken);
+      await CacheHelper.set(key: 'token', value: token.accessToken);
       emit(LoginSuccess());
     });
   }

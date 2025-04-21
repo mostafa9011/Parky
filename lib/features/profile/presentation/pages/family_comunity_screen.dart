@@ -91,10 +91,7 @@ class FamilyComunityScreen extends StatelessWidget {
                     shrinkWrap: true,
                     itemCount: 1,
                     itemBuilder: (context, index) {
-                      return const CustomFamilyCard(
-                        isInviteCard: true,
-                        id: 1,
-                      );
+                      return const CustomFamilyCard(isInviteCard: true, id: -1);
                     },
                   ),
                   CustomText(
