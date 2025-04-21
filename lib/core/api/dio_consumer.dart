@@ -5,6 +5,8 @@ import 'package:dio/io.dart';
 import 'package:parky/core/api/api_consumer.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
+import '../helpers/cache_helper.dart';
+
 /// This class is responsible for handling api calls using Dio package
 class DioConsumer implements ApiConsumer {
   final Dio dio;
@@ -45,21 +47,22 @@ class DioConsumer implements ApiConsumer {
           maxWidth: 90,
         ),
 
-        // InterceptorsWrapper(
-        //   onRequest: (options, handler) async {
-        //     // For token handling
-        //     final token = CacheHelper.getStringData('token');
+        InterceptorsWrapper(
+          onRequest: (options, handler) async {
+            // For token handling
+            final token = CacheHelper.getStringData('token');
 
-        //     if (token != null) {
-        //       // Set the Authorization header with the cached access token
-        //       options.headers['Authorization'] = 'Bearer $token';
-        //     }
+            if (token != null) {
+              // Set the Authorization header with the cached access token
+              options.headers['Authorization'] = 'Bearer $token';
+            }
 
-        //     return handler.next(options);
-        //   },
-        //   // onResponse: (response, handler) {
-        //   //   return handler.next(response);
-        //   // },
+            return handler.next(options);
+          },
+        ),
+        // onResponse: (response, handler) {
+        //   return handler.next(response);
+        // },
         //   onError: (error, handler) {
         //     kprint("Error from DioConsumer: ${error.toString()}");
 

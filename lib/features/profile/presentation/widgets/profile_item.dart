@@ -23,7 +23,7 @@ class ProfileItem extends StatefulWidget {
 }
 
 class _ProfileItemState extends State<ProfileItem> {
-  bool value = false;
+  bool value = true;
   @override
   Widget build(BuildContext context) {
     return Container(

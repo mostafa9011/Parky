@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:parky/core/helpers/cache_helper.dart';
 import 'package:parky/features/auth/data/models/token_model.dart';
 import 'package:parky/features/auth/data/repository/auth_repository.dart';
 
@@ -21,6 +22,7 @@ class AuthCubit extends Cubit<AuthState> {
     final result = await _authRepository.login(loginModel);
     result.fold((failure) => emit(LoginError(failure.message)), (token) {
       tokenModel = token;
+      CacheHelper.set(key: 'token', value: token.accessToken);
       emit(LoginSuccess());
     });
   }

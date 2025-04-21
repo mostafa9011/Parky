@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:parky/config/themes/assets_manager.dart';
 import 'package:parky/core/utils/widgets/circular_image.dart';
+import 'package:parky/core/utils/widgets/custom_scaffold_message.dart';
 import 'package:parky/features/notifications/data/models/notification_model.dart';
+import 'package:parky/features/notifications/presentation/cubit/notifications_cubit.dart';
 
 import '../../../../config/themes/text_style.dart';
 
@@ -19,7 +21,14 @@ class NotificationItem extends StatelessWidget {
         extentRatio: 0.3,
         children: [
           SlidableAction(
-            onPressed: (context) {},
+            onPressed: (context) {
+              NotificationsCubit.get(context)
+                  .deleteNotification(notificationModel!.id!);
+              showScaffoldMessage(
+                context,
+                message: "Notification Deleted Successfully",
+              );
+            },
             // backgroundColor: Colors.grey,
             foregroundColor: Colors.red,
             icon: Icons.delete,
