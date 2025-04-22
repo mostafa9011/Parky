@@ -6,9 +6,12 @@ import 'package:parky/core/utils/services/snack_bar_service.dart';
 import 'package:parky/core/utils/widgets/custom_elevated_button.dart';
 import 'package:parky/core/utils/widgets/custom_scaffold_message.dart';
 import 'package:parky/core/utils/widgets/custom_text.dart';
+import 'package:parky/features/wallet/data/models/wallet_model.dart';
 
 import '../../../../config/themes/color_manager.dart';
 import '../../../../config/themes/text_style.dart';
+import '../../../wallet/data/models/translation_model.dart';
+import '../../../wallet/presentation/cubit/wallet_cubit.dart';
 import '../widgets/spot_body.dart';
 import '../widgets/spot_header.dart';
 import '../widgets/spot_vip_body.dart';
@@ -25,6 +28,7 @@ class _SpotScreenState extends State<SpotScreen> {
   bool isVip = false;
   @override
   Widget build(BuildContext context) {
+    WalletModel walletModel = WalletModel.instance;
     return Scaffold(
       backgroundColor: ColorManager.primaryColor,
       body: Column(
@@ -176,6 +180,38 @@ class _SpotScreenState extends State<SpotScreen> {
                               // confirm
                               TextButton(
                                 onPressed: () {
+                                  // check balance
+                                  if (isVip) {
+                                    if (walletModel.balance < 220) {
+                                      Navigator.pop(context);
+                                      showSnakeBar(
+                                        msg: "Insufficient balance",
+                                        snakeBarType: SnakeBarType.error,
+                                      );
+                                      return;
+                                    }
+                                  } else {
+                                    if (walletModel.balance < 50) {
+                                      Navigator.pop(context);
+                                      showSnakeBar(
+                                        msg: "Insufficient balance",
+                                        snakeBarType: SnakeBarType.error,
+                                      );
+                                      return;
+                                    }
+                                  }
+
+                                  walletModel.removeBalance(
+                                    isVip ? 220 : 50,
+                                  );
+                                  WalletCubit.get(context).addTranslation(
+                                    TransactionModel(
+                                      amount: double.parse(
+                                        isVip ? "220" : "50",
+                                      ),
+                                      isAdded: false,
+                                    ),
+                                  );
                                   showSnakeBar(
                                     msg: "Booked successfully",
                                     snakeBarType: SnakeBarType.success,

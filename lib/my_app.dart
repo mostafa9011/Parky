@@ -12,6 +12,7 @@ import 'core/utils/widgets/di/di.dart';
 import 'features/home/domain/usecases/get_parkings_use_case.dart';
 import 'features/home/presentation/cubit/home_cubit.dart';
 import 'features/profile/presentation/cubit/profile_cubit.dart';
+import 'features/wallet/presentation/cubit/wallet_cubit.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -41,6 +42,10 @@ class MyApp extends StatelessWidget {
           // profile cubit
           BlocProvider(
             create: (context) => ProfileCubit(),
+          ),
+          // wallet cubit
+          BlocProvider(
+            create: (context) => WalletCubit(),
           ),
         ],
         child: MaterialApp(
