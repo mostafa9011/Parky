@@ -12,6 +12,10 @@ class AssetsManager {
   static const String onBoarding4 = '${_imagesPath}onBoarding4.png';
   static const String onBoardingBg = '${_imagesPath}onBoardingBg.png';
   static const String parkingIcon = '${_imagesPath}parkingIcon.png';
+  static const String parkingVip = '${_imagesPath}parking_vip.png';
+  static const String parkingVip2 = '${_imagesPath}parking_vip2.png';
+  static const String parking1 = '${_imagesPath}parking1.png';
+  static const String parking2 = '${_imagesPath}parking2.png';
 
   /// SVG
   static const String backIcon = '${_svgPath}back_icon.svg';

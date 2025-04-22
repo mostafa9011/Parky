@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:parky/config/routes/page_name.dart';
 import 'package:parky/config/themes/color_manager.dart';
 import 'package:parky/features/favorite/presentation/pages/favorite_screen.dart';
+import 'package:parky/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:parky/features/wallet/presentation/pages/wallet_screen.dart';
 
 import '../../../../config/themes/assets_manager.dart';
@@ -21,7 +22,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
   @override
   void initState() {
     super.initState();
-    // HomeCubit.get(context).getRealTimeLocation();
+    ProfileCubit.get(context).getAllUsers();
   }
 
   int _selectedIndex = 0;

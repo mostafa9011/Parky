@@ -33,11 +33,11 @@ class AuthRepository {
   }
 
   // register
-  Future<Either<Failure, void>> register(RegisterModel registerModel) async {
+  Future<Either<Failure, void>> register() async {
     try {
       await _dioConsumer.post(
         path: '/api/register/',
-        body: registerModel.toJson(),
+        body: RegisterModel().toJson(),
       );
       return const Right(null);
     } on ServerException catch (e) {

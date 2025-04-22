@@ -11,4 +11,5 @@ class PageName {
   static const String myAccountScreen = '/myAccountScreen';
   static const String notificationsScreen = '/notificationsScreen';
   static const String familyComunityScreen = '/familyComunityScreen';
+  static const String spotScreen = '/spotScreen';
 }

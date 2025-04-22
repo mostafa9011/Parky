@@ -31,7 +31,7 @@ class FavoriteCard extends StatelessWidget {
                 borderRadius:
                     const BorderRadius.vertical(top: Radius.circular(16)),
                 child: Image.network(
-                  ConstantsManager.tempGarageLink,
+                  ConstantsManager.tempeMa3adyGarage,
                   height: 120.h,
                   width: double.infinity,
                   fit: BoxFit.cover,
@@ -46,7 +46,7 @@ class FavoriteCard extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          "Bamboo Parking",
+                          "جراج المعادي",
                           style: getSemiBoldStyle(
                               fontSize: 16, color: Colors.black),
                         ),
@@ -71,7 +71,7 @@ class FavoriteCard extends StatelessWidget {
                         ),
                         const SizedBox(width: 4),
                         Text(
-                          "9134 Holly St, Maryland",
+                          "9134 Holly St, المعادي",
                           style: getRegularStyle(
                             fontSize: 12,
                             color: Colors.grey,

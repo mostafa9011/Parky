@@ -4,7 +4,6 @@ import 'package:parky/features/auth/data/models/token_model.dart';
 import 'package:parky/features/auth/data/repository/auth_repository.dart';
 
 import '../../data/models/login_model.dart';
-import '../../data/models/register_form.dart';
 import '../../data/models/register_model.dart';
 
 part 'auth_state.dart';
@@ -15,7 +14,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   final AuthRepository _authRepository = AuthRepository();
   TokenModel? tokenModel;
-  RegisterForm registerForm = RegisterForm();
+  RegisterModel registerForm = RegisterModel();
   // login
   Future<void> login(LoginModel loginModel) async {
     emit(LoginLoading());
@@ -23,18 +22,18 @@ class AuthCubit extends Cubit<AuthState> {
     result.fold((failure) => emit(LoginError(failure.message)), (token) async {
       tokenModel = token;
       await CacheHelper.set(key: 'token', value: token.accessToken);
+      await CacheHelper.set(key: 'email', value: loginModel.email);
       emit(LoginSuccess());
     });
   }
 
   // register
-  Future<void> register(RegisterModel registerModel) async {
+  Future<void> register() async {
     emit(RegisterLoading());
-    final result = await _authRepository.register(registerModel);
+    final result = await _authRepository.register();
     result.fold(
       (failure) => emit(RegisterError(failure.message)),
       (empty) => emit(RegisterSuccess()),
     );
-    registerForm.clear();
   }
 }

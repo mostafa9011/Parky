@@ -7,6 +7,7 @@ import 'package:parky/config/themes/text_style.dart';
 import 'package:parky/core/utils/widgets/custom_elevated_button.dart';
 import 'package:parky/core/utils/widgets/custom_scaffold_message.dart';
 import 'package:parky/core/utils/widgets/custom_text_form_field.dart';
+import 'package:parky/features/auth/data/models/register_model.dart';
 import 'package:parky/features/auth/presentation/cubit/auth_cubit.dart';
 
 import '../../../../config/themes/assets_manager.dart';
@@ -21,8 +22,9 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool obscureText = true;
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  // TextEditingController emailController = TextEditingController();
+  // TextEditingController passwordController = TextEditingController();
+  RegisterModel registerModel = RegisterModel();
 
   final formKey = GlobalKey<FormState>();
 
@@ -85,12 +87,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       const SizedBox(height: 16),
                       CustomTextFormField(
-                        controller: emailController,
+                        controller: registerModel.emailController,
                         textHint: "Email",
                         textColor: Colors.white,
                       ),
                       CustomTextFormField(
-                        controller: passwordController,
+                        controller: registerModel.passwordController,
                         textHint: "password",
                         textColor: Colors.white,
                         obscureText: obscureText,
@@ -108,8 +110,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           if (!formKey.currentState!.validate()) return;
                           AuthCubit.get(context).login(
                             LoginModel(
-                              email: emailController.text,
-                              password: passwordController.text,
+                              email: registerModel.emailController.text,
+                              password: registerModel.passwordController.text,
                             ),
                           );
                         },

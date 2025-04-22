@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:parky/config/themes/color_manager.dart';
 import 'package:parky/core/utils/widgets/custom_elevated_button.dart';
 import 'package:parky/core/utils/widgets/custom_scaffold_message.dart';
+import 'package:parky/features/auth/data/models/register_model.dart';
+import 'package:parky/features/profile/presentation/cubit/profile_cubit.dart';
 
 import '../../../../config/themes/assets_manager.dart';
 import '../../../../config/themes/text_style.dart';
@@ -18,19 +21,7 @@ class MyAccountScreen extends StatefulWidget {
 }
 
 class _MyAccountScreenState extends State<MyAccountScreen> {
-  // name controller
-  final TextEditingController _nameController =
-      TextEditingController(text: "Mostafa");
-  // email controller
-  final TextEditingController _emailController =
-      TextEditingController(text: "mostafa@gmail.com");
-  // phone controller
-  final TextEditingController _phoneController =
-      TextEditingController(text: "01234567891");
-  // national id controller
-  final TextEditingController _nationalIdController =
-      TextEditingController(text: "12345678912345");
-
+  RegisterModel registerForm = RegisterModel();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,100 +74,120 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
             child: const ProfileCard(enableEdit: true),
           ),
 
-          Expanded(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 20.h),
-                    Text(
-                      "Name",
-                      style: getRegularStyle(
-                        fontSize: 16,
-                        color: Colors.black,
-                      ),
-                    ),
-                    CustomTextFormField(
-                      textHint: "Name",
-                      colorBorder: Colors.black54,
-                      controller: _nameController,
-                    ),
-                    //email
-                    Text(
-                      "Email",
-                      style: getRegularStyle(
-                        fontSize: 16,
-                        color: Colors.black,
-                      ),
-                    ),
-                    CustomTextFormField(
-                      textHint: "Email",
-                      colorBorder: Colors.black54,
-                      controller: _emailController,
-                    ),
-                    //phone
-                    Text(
-                      "Phone",
-                      style: getRegularStyle(
-                        fontSize: 16,
-                        color: Colors.black,
-                      ),
-                    ),
-                    CustomTextFormField(
-                      textHint: "Phone",
-                      colorBorder: Colors.black54,
-                      keyboardType: TextInputType.phone,
-                      controller: _phoneController,
-                    ),
-                    // notional id
-                    Text(
-                      "National ID",
-                      style: getRegularStyle(
-                        fontSize: 16,
-                        color: Colors.black,
-                      ),
-                    ),
-                    CustomTextFormField(
-                      textHint: "National ID",
-                      colorBorder: Colors.black54,
-                      keyboardType: TextInputType.phone,
-                      controller: _nationalIdController,
-                    ),
-                    //gender drop down
-                    Text(
-                      "Gender",
-                      style: getRegularStyle(
-                        fontSize: 16,
-                        color: Colors.black,
-                      ),
-                    ),
-                    const CustomDropDown(
-                      gender: Gender.male,
-                    ),
+          BlocBuilder<ProfileCubit, ProfileState>(
+            builder: (context, state) {
+              if (state is AllUsersLoading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              if (state is AllUsersError) {
+                return Center(
+                  child: Text(state.message),
+                );
+              }
+              return Expanded(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.w),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 20.h),
+                        Text(
+                          "Name",
+                          style: getRegularStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                        ),
+                        CustomTextFormField(
+                          textHint: "Name",
+                          colorBorder: Colors.black54,
+                          controller: registerForm.firstNameController,
+                        ),
+                        //email
+                        Text(
+                          "Email",
+                          style: getRegularStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                        ),
+                        CustomTextFormField(
+                          textHint: "Email",
+                          colorBorder: Colors.black54,
+                          controller: registerForm.emailController,
+                        ),
+                        //phone
+                        Text(
+                          "Phone",
+                          style: getRegularStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                        ),
+                        CustomTextFormField(
+                          textHint: "Phone",
+                          colorBorder: Colors.black54,
+                          keyboardType: TextInputType.phone,
+                          controller: registerForm.phoneController,
+                        ),
+                        // notional id
+                        Text(
+                          "National ID",
+                          style: getRegularStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                        ),
+                        CustomTextFormField(
+                          textHint: "National ID",
+                          colorBorder: Colors.black54,
+                          keyboardType: TextInputType.phone,
+                          controller: registerForm.nationalId,
+                        ),
+                        //gender drop down
+                        Text(
+                          "Gender",
+                          style: getRegularStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                        ),
+                        CustomDropDown(
+                          gender: registerForm.gender == 'Male'
+                              ? Gender.male
+                              : Gender.female,
+                          onChanged: (value) {
+                            if (value == null) return;
+                            registerForm.gender == value;
+                          },
+                        ),
 
-                    SizedBox(height: 24.h),
-                    //save button
-                    CustomElevatedButton(
-                      width: 120.w,
-                      height: 28.h,
-                      onPressed: () {
-                        Navigator.pop(context);
-                        showScaffoldMessage(
-                          context,
-                          message: "Data saved successfully",
-                        );
-                      },
-                      text: "Save data",
-                      textColor: Colors.red.shade900,
-                      borderColor: Colors.grey,
-                      backgroundColor: Colors.grey.shade200,
+                        SizedBox(height: 24.h),
+                        //save button
+                        CustomElevatedButton(
+                          width: 120.w,
+                          height: 28.h,
+                          onPressed: () {
+                            Navigator.pop(context);
+                            showScaffoldMessage(
+                              context,
+                              message: "Data saved successfully",
+                            );
+                          },
+                          text: "Save data",
+                          textColor: Colors.red.shade900,
+                          borderColor: Colors.grey,
+                          backgroundColor: Colors.grey.shade200,
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
+              );
+            },
           ),
         ],
       ),

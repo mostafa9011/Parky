@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:parky/config/routes/page_name.dart';
 import 'package:parky/core/utils/widgets/custom_text_form_field.dart';
-import 'package:parky/features/auth/data/models/register_model.dart';
 import 'package:parky/features/auth/presentation/cubit/auth_cubit.dart';
 
 import '../../../../config/themes/assets_manager.dart';
@@ -11,7 +10,7 @@ import '../../../../config/themes/text_style.dart';
 import '../../../../core/utils/widgets/custom_elevated_button.dart';
 import '../../../../core/utils/widgets/custom_scaffold_message.dart';
 import '../../../../core/utils/widgets/upload_file/upload_file_widget.dart';
-import '../../data/models/register_form.dart';
+import '../../data/models/register_model.dart';
 import '../widgets/custom_app_bar.dart';
 
 class CompleteSignUpScreen extends StatelessWidget {
@@ -41,7 +40,7 @@ class CompleteSignUpScreen extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        RegisterForm registerForm = AuthCubit.get(context).registerForm;
+        RegisterModel registerForm = AuthCubit.get(context).registerForm;
         return Scaffold(
           body: Container(
             decoration: const BoxDecoration(
@@ -113,17 +112,15 @@ class CompleteSignUpScreen extends StatelessWidget {
                             // Navigator.pushNamed(context, PageName.otpScreen);
                             if (!registerForm.formKey.currentState!.validate())
                               return;
-                            AuthCubit.get(context).register(
-                              RegisterModel(
-                                firstName:
-                                    registerForm.firstNameController.text,
-                                lastName: registerForm.lastNameController.text,
-                                email: registerForm.emailController.text,
-                                password: registerForm.passwordController.text,
-                                licensePlate:
-                                    registerForm.licensePlateController.text,
-                                carModel: registerForm.carModelController.text,
-                              ),
+                            // AuthCubit.get(context).register();
+                            showScaffoldMessage(
+                              context,
+                              message: "Register Successfully",
+                            );
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              PageName.loginScreen,
+                              (route) => false,
                             );
                           },
                           text: "Sign Up",

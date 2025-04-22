@@ -9,20 +9,25 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   FavoriteCubit() : super(FavoriteInitial());
   static FavoriteCubit get(BuildContext context) => BlocProvider.of(context);
 
-  List<FavoriteModel> favorites = [
-    FavoriteModel(
-      id: 10,
-    ),
-    FavoriteModel(
-      id: 20,
-    ),
-    FavoriteModel(
-      id: 30,
-    ),
-  ];
+  List<FavoriteModel> favorites = [];
+  bool isFavoriteGarage = false;
 
-  removeFavorite(int id) {
+  // add to favorite
+  void addToFavorite(int id) {
+    favorites.add(
+      FavoriteModel(
+        id: id,
+      ),
+    );
+    isFavoriteGarage = true;
+
+    emit(FavoriteAdded());
+  }
+
+  // remove from Favorite
+  void removeFavorite(int id) {
     favorites.removeWhere((element) => element.id == id);
-    emit(FavoriteUpdated());
+    isFavoriteGarage = false;
+    emit(FavoriteRemoved());
   }
 }
