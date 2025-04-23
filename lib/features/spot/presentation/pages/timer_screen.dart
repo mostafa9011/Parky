@@ -27,7 +27,7 @@ class _TimerScreenState extends State<TimerScreen> {
     var timerCubit = TimerCubit.get(context);
     if (timerCubit.isTimerStart == false) {
       timerCubit.startTimer(
-        waitingDurationSecends: 5,
+        waitingDurationSecends: 30,
         // houre in secends
         // 1 houre in secends = 3600
         currentDurationSecends: 3600,
