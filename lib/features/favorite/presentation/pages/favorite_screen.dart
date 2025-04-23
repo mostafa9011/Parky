@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:parky/config/themes/color_manager.dart';
+import 'package:parky/config/themes/text_manager.dart';
 import 'package:parky/config/themes/text_style.dart';
 import 'package:parky/features/favorite/presentation/cubit/favorite_cubit.dart';
 import 'package:parky/features/favorite/presentation/widgets/favorite_card.dart';
@@ -18,7 +20,7 @@ class FavoriteScreen extends StatelessWidget {
         if (favoriteList.isEmpty) {
           return Center(
             child: Text(
-              "Your favorite list is empty",
+              TextManager.yourFavIsEmpty.tr(),
               style: getBoldStyle(
                 fontSize: 18,
                 color: ColorManager.primaryColor,

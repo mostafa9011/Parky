@@ -40,4 +40,6 @@ abstract class TextManager {
   //
   static const String changeLanguage = 'changeLanguage';
   static const String changeLanguageSubTitle = 'changeLanguageSubTitle';
+  static const String myAccount = 'myAccount';
+  static const String yourFavIsEmpty = 'yourFavIsEmpty';
 }

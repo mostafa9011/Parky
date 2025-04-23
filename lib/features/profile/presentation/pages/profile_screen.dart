@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:parky/config/themes/text_manager.dart';
 import 'package:parky/config/themes/text_style.dart';
 import 'package:parky/core/utils/widgets/custom_elevated_button.dart';
 import 'package:parky/core/utils/widgets/custom_scaffold_message.dart';
@@ -21,7 +23,7 @@ class ProfileScreen extends StatelessWidget {
           const ProfileCard(),
           // my account
           ProfileItem(
-            title: 'My Account',
+            title: TextManager.myAccount.tr(),
             subTitle: 'Edit your account details',
             icon: Icons.person_2_outlined,
             onPressed: () {
