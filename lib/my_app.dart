@@ -12,6 +12,7 @@ import 'core/utils/widgets/di/di.dart';
 import 'features/home/domain/usecases/get_parkings_use_case.dart';
 import 'features/home/presentation/cubit/home_cubit.dart';
 import 'features/profile/presentation/cubit/profile_cubit.dart';
+import 'features/spot/presentation/cubit/timer_cubit/timer_cubit.dart';
 import 'features/wallet/presentation/cubit/wallet_cubit.dart';
 
 class MyApp extends StatelessWidget {
@@ -46,6 +47,10 @@ class MyApp extends StatelessWidget {
           // wallet cubit
           BlocProvider(
             create: (context) => WalletCubit(),
+          ),
+          // timer cubit
+          BlocProvider(
+            create: (context) => TimerCubit(),
           ),
         ],
         child: MaterialApp(
