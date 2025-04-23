@@ -16,8 +16,12 @@ class AuthCubit extends Cubit<AuthState> {
   TokenModel? tokenModel;
   RegisterModel registerForm = RegisterModel();
   // login
-  Future<void> login(LoginModel loginModel) async {
+  Future<void> login() async {
     emit(LoginLoading());
+    final loginModel = LoginModel(
+      email: registerForm.emailController.text,
+      password: registerForm.passwordController.text,
+    );
     final result = await _authRepository.login(loginModel);
     result.fold((failure) => emit(LoginError(failure.message)), (token) async {
       tokenModel = token;

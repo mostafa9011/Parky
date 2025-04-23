@@ -8,11 +8,21 @@ class ProfileInitial extends ProfileState {}
 class FamilyComunityUpdated extends ProfileState {}
 
 // all users states
-class AllUsersLoading extends ProfileState {}
+// class AllUsersLoading extends ProfileState {}
 
-class AllUsersSuccess extends ProfileState {}
+// class AllUsersSuccess extends ProfileState {}
 
-class AllUsersError extends ProfileState {
+// class AllUsersError extends ProfileState {
+//   final String message;
+//   AllUsersError(this.message);
+// }
+
+// get profile states
+class GetProfileLoading extends ProfileState {}
+
+class GetProfileSuccess extends ProfileState {}
+
+class GetProfileError extends ProfileState {
   final String message;
-  AllUsersError(this.message);
+  GetProfileError(this.message);
 }

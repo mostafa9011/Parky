@@ -76,12 +76,12 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
 
           BlocBuilder<ProfileCubit, ProfileState>(
             builder: (context, state) {
-              if (state is AllUsersLoading) {
+              if (state is GetProfileLoading) {
                 return const Center(
                   child: CircularProgressIndicator(),
                 );
               }
-              if (state is AllUsersError) {
+              if (state is GetProfileError) {
                 return Center(
                   child: Text(state.message),
                 );

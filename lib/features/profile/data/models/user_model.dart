@@ -1,4 +1,34 @@
 class UserModel {
+  String? email;
+  String? firstName;
+  String? lastName;
+  String? nationality;
+  String? profilePicture;
+  String? gender;
+  String? phoneNumber;
+
+  UserModel({
+    this.email,
+    this.firstName,
+    this.lastName,
+    this.nationality,
+    this.profilePicture,
+    this.gender,
+    this.phoneNumber,
+  });
+
+  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+        email: json['email'] as String?,
+        firstName: json['first_name'] as String?,
+        lastName: json['last_name'] as String?,
+        nationality: json['nationality'] as String?,
+        profilePicture: json['profile_picture'] as String?,
+        gender: json['gender'] as String?,
+        phoneNumber: json['phone_number'] as String?,
+      );
+}
+
+class AllUsersModel {
   int? id;
   String? firstName;
   String? lastName;
@@ -14,7 +44,7 @@ class UserModel {
   bool? isSuperuser;
   bool? isActive;
 
-  UserModel({
+  AllUsersModel({
     this.id,
     this.firstName,
     this.lastName,
@@ -31,7 +61,7 @@ class UserModel {
     this.isActive,
   });
 
-  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+  factory AllUsersModel.fromJson(Map<String, dynamic> json) => AllUsersModel(
         id: json['id'] as int?,
         firstName: json['first_name'] as String?,
         lastName: json['last_name'] as String?,

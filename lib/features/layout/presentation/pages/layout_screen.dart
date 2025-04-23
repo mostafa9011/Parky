@@ -22,7 +22,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
   @override
   void initState() {
     super.initState();
-    ProfileCubit.get(context).getAllUsers();
+    ProfileCubit.get(context).getProfile();
   }
 
   int _selectedIndex = 0;

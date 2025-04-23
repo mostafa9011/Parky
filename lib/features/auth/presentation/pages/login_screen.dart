@@ -11,7 +11,6 @@ import 'package:parky/features/auth/data/models/register_model.dart';
 import 'package:parky/features/auth/presentation/cubit/auth_cubit.dart';
 
 import '../../../../config/themes/assets_manager.dart';
-import '../../data/models/login_model.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -22,8 +21,6 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool obscureText = true;
-  // TextEditingController emailController = TextEditingController();
-  // TextEditingController passwordController = TextEditingController();
   RegisterModel registerModel = RegisterModel();
 
   final formKey = GlobalKey<FormState>();
@@ -108,12 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         isLoading: state is LoginLoading,
                         onPressed: () {
                           if (!formKey.currentState!.validate()) return;
-                          AuthCubit.get(context).login(
-                            LoginModel(
-                              email: registerModel.emailController.text,
-                              password: registerModel.passwordController.text,
-                            ),
-                          );
+                          AuthCubit.get(context).login();
                         },
                         text: "Log In",
                         height: 40,

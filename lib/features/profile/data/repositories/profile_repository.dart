@@ -9,9 +9,23 @@ import '../models/user_model.dart';
 class ProfileRepository {
   final _profileRemoteDataSource = ProfileRemoteDataSource();
 
-  Future<Either<Failure, List<UserModel>>> getAllUsers() async {
+  Future<Either<Failure, List<AllUsersModel>>> getAllUsers() async {
     try {
       return Right(await _profileRemoteDataSource.getAllUsers());
+    } on ServerException catch (e) {
+      return Left(ServerFailure(
+        message: "There was an error",
+        code: e.errorMessageModel.statusCode?.toInt() ?? 0,
+      ));
+    } on Exception catch (e) {
+      kprint("Error: ${e.toString()}");
+      return const Left(ServerFailure(message: "There was an error"));
+    }
+  }
+
+  Future<Either<Failure, UserModel>> getProfile() async {
+    try {
+      return Right(await _profileRemoteDataSource.getProfile());
     } on ServerException catch (e) {
       return Left(ServerFailure(
         message: "There was an error",

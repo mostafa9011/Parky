@@ -21,7 +21,7 @@ class ProfileCard extends StatelessWidget {
     return BlocBuilder<ProfileCubit, ProfileState>(
       builder: (context, state) {
         return Skeletonizer(
-          enabled: state is AllUsersLoading,
+          enabled: state is GetProfileLoading,
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 14.h),
             margin: EdgeInsets.symmetric(vertical: 10.h),

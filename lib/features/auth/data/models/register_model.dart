@@ -17,7 +17,7 @@ class RegisterModel {
   TextEditingController licensePlateController = TextEditingController();
   TextEditingController carModelController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
-  TextEditingController nationalId = TextEditingController(text:'1234567890');
+  TextEditingController nationalId = TextEditingController(text: '1234567890');
   String gender = 'Male';
 
   Map<String, dynamic> toJson() => {
@@ -29,7 +29,8 @@ class RegisterModel {
         'car_model': carModelController.text,
         'phone_number': phoneController.text,
         'gender': gender,
-        'national_id': nationalId.text
+        'national_id': nationalId.text,
+        'username': firstNameController.text
       };
 
   // clear

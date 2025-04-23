@@ -6,12 +6,18 @@ import '../../../../core/api/dio_consumer.dart';
 class ProfileRemoteDataSource {
   final _dioConsumer = DioConsumer(dio: Dio());
 
-  Future<List<UserModel>> getAllUsers() async {
+  Future<List<AllUsersModel>> getAllUsers() async {
     List<dynamic> response = await _dioConsumer.get(path: '/api/users/');
-    List<UserModel> users = [];
+    List<AllUsersModel> users = [];
     for (var element in response) {
-      users.add(UserModel.fromJson(element));
+      users.add(AllUsersModel.fromJson(element));
     }
     return users;
+  }
+
+  // get profile
+  Future<UserModel> getProfile() async {
+    var response = await _dioConsumer.get(path: '/api/profile/');
+    return UserModel.fromJson(response);
   }
 }

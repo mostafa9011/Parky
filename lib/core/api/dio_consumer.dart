@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:parky/core/api/api_consumer.dart';
+import 'package:parky/core/utils/functions/kprint.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../helpers/cache_helper.dart';
@@ -54,6 +55,7 @@ class DioConsumer implements ApiConsumer {
 
             if (token != null) {
               // Set the Authorization header with the cached access token
+              kprint("Token: $token");
               options.headers['Authorization'] = 'Bearer $token';
             }
 

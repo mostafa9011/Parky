@@ -112,16 +112,7 @@ class CompleteSignUpScreen extends StatelessWidget {
                             // Navigator.pushNamed(context, PageName.otpScreen);
                             if (!registerForm.formKey.currentState!.validate())
                               return;
-                            // AuthCubit.get(context).register();
-                            showScaffoldMessage(
-                              context,
-                              message: "Register Successfully",
-                            );
-                            Navigator.pushNamedAndRemoveUntil(
-                              context,
-                              PageName.loginScreen,
-                              (route) => false,
-                            );
+                            AuthCubit.get(context).register();
                           },
                           text: "Sign Up",
                         ),
