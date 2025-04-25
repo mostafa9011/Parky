@@ -83,6 +83,8 @@ class ProfileCubit extends Cubit<ProfileState> {
         registerModel.gender = user.gender ?? registerModel.gender;
         registerModel.nationalId.text =
             user.nationality ?? registerModel.nationalId.text;
+        // image
+        registerModel.avatar = user.image;
         emit(GetProfileSuccess());
       },
     );

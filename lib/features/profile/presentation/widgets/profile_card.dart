@@ -40,6 +40,7 @@ class _ProfileCardState extends State<ProfileCard> {
               children: [
                 CircularImage(
                   radius: 30.r,
+                  networkImage: registerModel.avatar,
                   fileImage: RegisterModel().image,
                 ),
                 const SizedBox(width: 10),

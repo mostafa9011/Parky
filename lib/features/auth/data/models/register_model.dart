@@ -23,6 +23,7 @@ class RegisterModel {
   TextEditingController nationalId = TextEditingController(text: '1234567890');
   String gender = 'Male';
   File? image;
+  String? avatar;
 
   Map<String, dynamic> toJson() => {
         'first_name': firstNameController.text,
