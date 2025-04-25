@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:parky/config/themes/text_style.dart';
 import 'package:parky/features/auth/data/models/register_model.dart';
 import 'package:parky/features/auth/presentation/widgets/custom_app_bar.dart';
@@ -8,17 +9,24 @@ import 'package:parky/features/auth/presentation/widgets/custom_drop_down.dart';
 import '../../../../config/routes/page_name.dart';
 import '../../../../config/themes/assets_manager.dart';
 import '../../../../config/themes/color_manager.dart';
+import '../../../../core/utils/show_upload_image_dialoge.dart';
 import '../../../../core/utils/widgets/circular_image.dart';
 import '../../../../core/utils/widgets/custom_elevated_button.dart';
 import '../../../../core/utils/widgets/custom_text_form_field.dart';
-import '../widgets/image_sourse_dialog.dart';
+import '../../../profile/presentation/cubit/profile_cubit.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
   @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+  @override
   Widget build(BuildContext context) {
     RegisterModel registerForm = RegisterModel();
+    final profileCubit = ProfileCubit.get(context);
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -48,7 +56,7 @@ class SignUpScreen extends StatelessWidget {
                         alignment: Alignment.center,
                         child: CircularImage(
                           radius: 55.r,
-                          // fileImage: doctorAccount.image,
+                          fileImage: RegisterModel().image,
                         ),
                       ),
                       Positioned(
@@ -66,7 +74,24 @@ class SignUpScreen extends StatelessWidget {
                               color: ColorManager.primaryColor,
                             ),
                             onPressed: () {
-                              showImageSourceDialog(context);
+                              showUploadImageOrVideoDialoge(
+                                context: context,
+                                onCameraSelected: () async {
+                                  Navigator.pop(context);
+
+                                  RegisterModel().image = await profileCubit
+                                      .updateProfileImage(ImageSource.camera);
+                                  setState(() {});
+                                },
+                                onGallerySelected: () async {
+                                  Navigator.pop(context);
+
+                                  RegisterModel().image = await profileCubit
+                                      .updateProfileImage(ImageSource.gallery);
+
+                                  setState(() {});
+                                },
+                              );
                             },
                           ),
                         ),

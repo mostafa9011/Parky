@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class RegisterModel {
@@ -19,6 +22,7 @@ class RegisterModel {
   TextEditingController phoneController = TextEditingController();
   TextEditingController nationalId = TextEditingController(text: '1234567890');
   String gender = 'Male';
+  File? image;
 
   Map<String, dynamic> toJson() => {
         'first_name': firstNameController.text,
@@ -30,7 +34,8 @@ class RegisterModel {
         'phone_number': phoneController.text,
         'gender': gender,
         'national_id': nationalId.text,
-        'username': firstNameController.text
+        'username': firstNameController.text,
+        'image': MultipartFile.fromFileSync(image?.path ?? '')
       };
 
   // clear

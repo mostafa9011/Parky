@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:parky/features/auth/data/models/register_model.dart';
 
+import '../../../../core/helpers/file_picker/file_picker_helper.dart';
 import '../../data/repositories/profile_repository.dart';
 
 part 'profile_state.dart';
@@ -82,5 +86,27 @@ class ProfileCubit extends Cubit<ProfileState> {
         emit(GetProfileSuccess());
       },
     );
+  }
+
+  // update profile image
+  Future<File?> updateProfileImage(ImageSource source) async {
+    File? profileImage = await FilePickerHelper.selectImage(source: source);
+    if (profileImage == null) {
+      return null;
+    }
+    return profileImage;
+
+    // emit(UpdateProfileImageLoading());
+    // final params = UpdateProfileImageParams(imagePath: profileImage.path);
+    // final response = await _profileRepository.updateProfileImage(params);
+    // response.fold(
+    //   (failure) => emit(UpdateProfileImageError(failure.message)),
+    //   (data) {
+    //     // profileImage = null;
+    //     userModel!.setAvatar(data);
+    //     emit(UpdateProfileImageSuccess());
+    //     // getProfileImage();
+    //   },
+    // );
   }
 }

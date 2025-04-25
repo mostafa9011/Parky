@@ -1,8 +1,8 @@
 import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../../config/themes/color_manager.dart';
 import '../functions/kprint.dart';
@@ -11,7 +11,7 @@ class CircularImage extends StatelessWidget {
   final double radius;
   final String? networkImage;
   final String? assetsImage;
-  final XFile? fileImage;
+  final File? fileImage;
   const CircularImage({
     super.key,
     required this.radius,
