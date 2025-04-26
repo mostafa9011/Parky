@@ -39,6 +39,23 @@ class RegisterModel {
         'image': MultipartFile.fromFileSync(image?.path ?? '')
       };
 
+  // // form data
+  // FormData formData() => FormData.fromMap(
+  //       {
+  //         'first_name': firstNameController.text,
+  //         'last_name': lastNameController.text,
+  //         'email': emailController.text,
+  //         'password': passwordController.text,
+  //         'license_plate': licensePlateController.text,
+  //         'car_model': carModelController.text,
+  //         'phone_number': phoneController.text,
+  //         'gender': gender,
+  //         'national_id': nationalId.text,
+  //         'username': firstNameController.text,
+  //         'image': MultipartFile.fromFileSync(image?.path ?? '')
+  //       },
+  //     );
+
   // clear
   void clear() {
     firstNameController.clear();

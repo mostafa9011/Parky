@@ -38,6 +38,7 @@ class AuthRepository {
       await _dioConsumer.post(
         path: '/api/register/',
         body: RegisterModel().toJson(),
+        isFormData: true,
       );
       return const Right(null);
     } on ServerException catch (e) {

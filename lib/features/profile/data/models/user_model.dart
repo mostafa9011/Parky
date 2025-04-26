@@ -27,7 +27,7 @@ class UserModel {
         profilePicture: json['profile_picture'] as String?,
         gender: json['gender'] as String?,
         phoneNumber: json['phone_number'] as String?,
-        image: json['image'] as String?,
+        image: json['profile_picture'] as String?,
       );
 }
 
